@@ -3,8 +3,15 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Outlet, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 const Layout = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
     <Navbar bg="light" expand="lg">
@@ -30,6 +37,18 @@ const Layout = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Button variant="primary" onClick={handleShow}>
+        Launch
+      </Button>
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
       <nav>
         <ul>
           <li>
@@ -39,12 +58,32 @@ const Layout = () => {
             <Link to="/myjourney">My Journey</Link>
           </li>
           <li>
+            <Link to="/newentry">New Entry</Link>
+          </li>
+          <li>
             <Link to="/login">Login</Link>
           </li>
         </ul>
       </nav>
+      
+  
 
       <Outlet />
+      <div class="container-fluid" id='footer'>
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2021 Company, Inc</p>
+  </footer>
+</div>
+      
+  
+
     </>
   )
 };

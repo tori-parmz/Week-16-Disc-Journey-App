@@ -6,10 +6,14 @@
 //modal search engine
 //modal review form
 //modal review with edit/delete
+import CoverArtGrid from "../CoverArtGrid";
 
 const MyCollection = () => {
     return (
+        <div className="container">
         <h1>My Collection</h1>
+        <CoverArtGrid />
+        </div>
     )
 };
 

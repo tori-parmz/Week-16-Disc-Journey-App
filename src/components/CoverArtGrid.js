@@ -4,7 +4,7 @@ import CovertArtSm from "./CoverArtSm";
 export default function CoverArtGrid() {
     return (
         <div className="cover-art-grid">
-            <Grid container spacing={3}>
+            <Grid container spacing={4}>
                 
                     {/* map cover art */}
                     <CovertArtSm />

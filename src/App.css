@@ -19,5 +19,13 @@
 #footer {
   position: absolute;
   bottom: 0;
-  background-color: darkorange;
+  background-color: #FE8429;
+}
+
+#navbar {
+  background-color: #FE8429;
+}
+
+#off-canvas-menu {
+  background: rgba(250, 163, 96, 0.896);
 }

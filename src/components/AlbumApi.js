@@ -1,9 +1,11 @@
+import { useState, useEffect } from "react";
+
 const [myCollection, setMyCollection] = useState([]);
 const [newEntry, setNewEntry] = useState("");
 
 const albumsApi = "https://64659acb228bd07b354e1cfd.mockapi.io/mycollection/";
 
-export default async function getCollection() {
+async function getCollection() {
     try {
       const response = await fetch(albumsApi);
       console.log(response);
@@ -14,7 +16,7 @@ export default async function getCollection() {
     }
   }
 
-export default async function postCategory(e, categoryName) {
+async function postCategory(e, categoryName) {
     e.preventDefault(); //used for things wrapped in a form, keeps it from refreshing the page before using contents
     try {
       let response = await fetch(albumsApi, {
@@ -34,7 +36,7 @@ export default async function postCategory(e, categoryName) {
     e.target.reset();
   }
 
-export default async function deleteCategory(id) {
+async function deleteCategory(id) {
     try {
       await fetch(albumsApi + `/${id}`, {
         //deletes category by its ID
@@ -47,7 +49,7 @@ export default async function deleteCategory(id) {
     }
   }
 
-export default async function updateCategory(id, updatedCategory) {
+async function updateCategory(id, updatedCategory) {
     //this recieves the categoryId and
     //the menuCategory from MenuCategory component
     try {
@@ -58,14 +60,14 @@ export default async function updateCategory(id, updatedCategory) {
         },
         body: JSON.stringify(updatedCategory),
       });
-      const response = await getCategories();
+      const response = await getCollection();
       setMyCollection(response); //update state to reflect the change
     } catch (error) {
       console.log(error);
     }
   }
 
-export default async function deleteMenuItem(id, menuItemId, menuCategory) {
+async function deleteMenuItem(id, menuItemId, menuCategory) {
     console.log("Category ID: ", id, "Item ID: ", menuItemId);
     const updatedCategory = {
       ...menuCategory,
@@ -80,7 +82,7 @@ export default async function deleteMenuItem(id, menuItemId, menuCategory) {
     try {
       await updateCategory(id, updatedCategory); //updatedCategory has all the same data
       //except for the deleted item
-      const response = await getCategories();
+      const response = await getCollection();
       setMyCollection(response); //update state
     } catch (error) {
       console.error(error);
@@ -91,7 +93,7 @@ export default async function deleteMenuItem(id, menuItemId, menuCategory) {
     //get information, then update state
     async function stateUpdate() {
       try {
-        const menuData = await getCategories();
+        const menuData = await getCollection();
         console.log(menuData);
         setMyCollection(menuData);
         // return allCategories

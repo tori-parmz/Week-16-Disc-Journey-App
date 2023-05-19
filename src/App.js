@@ -9,7 +9,7 @@ import NoPage from './components/Routes/NoPage';
 import Layout from './components/Routes/Layout';
 import "bootstrap/dist/css/bootstrap.min.css";
 import NewEntry from './components/Routes/NewEntry';
-
+import UpdateProfile from './components/Routes/UpdateProfile';
 
 
 function App() {
@@ -21,7 +21,8 @@ function App() {
           <Route path="myjourney" element={<MyJourney />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="albuminfo/" element={<AlbumInfo />} />
-          <Route path="newentry/" element={<NewEntry />} />
+          <Route path="newentry" element={<NewEntry />} />
+          <Route path="updateprofile" element={<UpdateProfile />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

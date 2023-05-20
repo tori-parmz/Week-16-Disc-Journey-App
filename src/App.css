@@ -5,21 +5,16 @@
 .App-header {
   background-color: #ffffff;
   min-height: 100vh;
-  display: flex;
   justify-content: center;
   color: rgb(0, 0, 0);
 }
 
-.cover-art-grid {
-  margin: 2%;
-  width: 80vw;
-  justify-content: center;
-}
 
 #footer {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   background-color: #FE8429;
+  margin-bottom: -50;
 }
 
 #navbar {
@@ -28,4 +23,36 @@
 
 #off-canvas-menu {
   background: rgba(250, 163, 96, 0.896);
+}
+
+#profile-header {
+  background-image: url('./Assets/zetong-li-background.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 30%;
+  height: 400px;
+}
+
+#login-page{
+  background-image: url('../public/Assets/zetong-li-background.jpg');
+  min-height: 120vh;
+  background-size: cover;
+  background-position: 20%;
+  justify-content: center;
+
+}
+
+#collection-page{
+  justify-content: center;
+  text-align: center;
+}
+
+#album-info{
+  justify-content: center;
+  text-align: center;
+  max-width: 60%;
+}
+
+#track-list{
+  text-align: left;
 }

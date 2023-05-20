@@ -5,7 +5,7 @@ const [newEntry, setNewEntry] = useState("");
 
 const albumsApi = "https://64659acb228bd07b354e1cfd.mockapi.io/mycollection/";
 
-async function getCollection() {
+export async function getCollection() {
     try {
       const response = await fetch(albumsApi);
       console.log(response);
@@ -16,7 +16,7 @@ async function getCollection() {
     }
   }
 
-async function postCategory(e, categoryName) {
+export async function postCategory(e, categoryName) {
     e.preventDefault(); //used for things wrapped in a form, keeps it from refreshing the page before using contents
     try {
       let response = await fetch(albumsApi, {
@@ -36,7 +36,7 @@ async function postCategory(e, categoryName) {
     e.target.reset();
   }
 
-async function deleteCategory(id) {
+export async function deleteCategory(id) {
     try {
       await fetch(albumsApi + `/${id}`, {
         //deletes category by its ID
@@ -49,7 +49,7 @@ async function deleteCategory(id) {
     }
   }
 
-async function updateCategory(id, updatedCategory) {
+export async function updateCategory(id, updatedCategory) {
     //this recieves the categoryId and
     //the menuCategory from MenuCategory component
     try {
@@ -67,7 +67,7 @@ async function updateCategory(id, updatedCategory) {
     }
   }
 
-async function deleteMenuItem(id, menuItemId, menuCategory) {
+export async function deleteMenuItem(id, menuItemId, menuCategory) {
     console.log("Category ID: ", id, "Item ID: ", menuItemId);
     const updatedCategory = {
       ...menuCategory,

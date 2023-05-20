@@ -16,10 +16,12 @@ const Layout = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-    <Navbar expand="lg" id='navbar'>
+    <Navbar className="sticky-top" expand="lg" id='navbar'>
       <Container>
-      <Button className='m-2' onClick={handleShow}>
-      <i class="bi bi-list"></i>
+      <Button className='m-2' variant="light" onClick={handleShow}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+    </svg>
       </Button>
       <LinkContainer to='/' relative='path'> 
         <Navbar.Brand>
@@ -64,22 +66,33 @@ const Layout = () => {
           have chosen. Like, text, images, lists, etc.
         </Offcanvas.Body>
       </Offcanvas>
-      
+      <div className='App-header'>
+      <Outlet />
+      </div>
       
   
 
-      <Outlet />
-      <div class="container-fluid" id='footer'>
-  <footer class="py-3 my-2">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" className="nav-link px-2 text-dark">Home</a></li>
-      <li class="nav-item"><a href="#" className="nav-link px-2 text-dark">My Journey</a></li>
-      <li class="nav-item"><a href="#" className="nav-link px-2 text-dark">Update Profile</a></li>
-      <li class="nav-item"><a href="#" className="nav-link px-2 text-dark">About this App</a></li>
+      
+      <div className="container-fluid" id='footer'>
+  <footer className="py-5">
+    <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+    <LinkContainer to='/' relative='path'>
+      <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">Home</a></li>
+     </LinkContainer>
+     <LinkContainer to='/myjourney'>
+      <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">My Journey</a></li>
+      </LinkContainer>
+      <LinkContainer to='/updateprofile'>
+      <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">Update Profile</a></li>
+      </LinkContainer>
+
+      <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">About this App</a></li>
     </ul>
-    <p class="text-center text-dark">© disc journey</p>
+    <p className="text-center text-dark">© disc journey</p>
   </footer>
+  
 </div>
+
       
   
 

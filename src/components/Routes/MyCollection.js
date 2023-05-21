@@ -14,7 +14,6 @@ const MyCollection = () => {
         <div id="collection-page">
         <Header />
         <div className="container">
-        <h1>My Collection</h1>
         <CoverArtGrid />
         </div>
         </div>

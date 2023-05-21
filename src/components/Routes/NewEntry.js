@@ -1,11 +1,30 @@
 import { Card } from "react-bootstrap";
+import EntryForm from "../EntryForm";
 
 const NewEntry = () => {
     return (
-        <div className="container m-5" id="new-entry-form">
-        <Card>
-        <Card.Body>This is some text within a card body.</Card.Body>
+        <div id="new-entry-form">
+        <div className="container mt-5">
+            <div className="row">
+                <div className="col-3">
+
+                </div>
+                <div className="col-6">
+                    
+                
+
+            
+        <Card style={{ width: 'auto' }}>
+        <Card.Body>
+            <EntryForm />
+        </Card.Body>
         </Card>
+        </div>
+        <div className="col-3">
+                    
+                </div>
+        </div>
+        </div>
         </div>
         
     )

@@ -14,9 +14,12 @@ const LoginPage = () => {
                     </div>   
                 </div>
                 <div className='row align-items-center'>
-                    <div className='col'>
+                    <div className='col-sm'>
 
                     </div>
+                    <div className='col-sm'>
+
+                    
             <Card className='p-3' id='login-card'>
                 <Card.Body>
             <Form>
@@ -37,6 +40,10 @@ const LoginPage = () => {
     </Form>
     </Card.Body>
     </Card>
+    </div>
+    <div className='col-sm'>
+
+    </div>
     </div>
     </div>
 

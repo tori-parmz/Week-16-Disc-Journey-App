@@ -2,12 +2,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
 import ProfilePhotoSm from '../ProfilePhotoSm';
+import UpdateProfileNavBar from '../UpdateProfileNavBar';
+import UpdateProfileOffcanvas from '../UpdateProfileOffcanvas';
 
 
 const Layout = () => {
@@ -40,10 +42,7 @@ const Layout = () => {
             <Nav.Link>My Journey</Nav.Link>
             </LinkContainer>
             <NavDropdown title="Account" id="basic-nav-dropdown">
-            <LinkContainer to='/updateprofile'>
-              <NavDropdown.Item>Update Profile
-              </NavDropdown.Item>
-              </LinkContainer>
+            <NavDropdown.Item as={UpdateProfileNavBar}>Update Profile</NavDropdown.Item>
               <LinkContainer to='/newentry'>
               <NavDropdown.Item>
                 New Entry
@@ -70,11 +69,17 @@ const Layout = () => {
         <p className="fw-light lh-sm">Join Date</p>
         <p className="fw-light lh-sm">Collection Size</p>
           <Nav defaultActiveKey="/home" className="flex-column mt-3" id='off-canvas-nav'>
-      <Nav.Link className='text-light'>Update Profile</Nav.Link>
+      <Nav.Link as={UpdateProfileOffcanvas} className='text-light'>Update Profile</Nav.Link>
+      <LinkContainer to='/newentry'>
       <Nav.Link className='text-light'>New Entry</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to='/' relative='path'>
       <Nav.Link className='text-light'>My Collection</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to='/myjourney'>
       <Nav.Link className='text-light'>My Journey</Nav.Link>
-      <Nav.Link className='text-light'>Logout</Nav.Link>
+      </LinkContainer>
+      <Nav.Link className='disabled' disabled>Logout</Nav.Link>
     </Nav>
     <img src='./Assets/disc-journey-logo.png' id='offcanvas-logo'></img>
         </Offcanvas.Body>
@@ -92,13 +97,12 @@ const Layout = () => {
     <LinkContainer to='/' relative='path'>
       <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">Home</a></li>
      </LinkContainer>
+     <LinkContainer to='/' relative='path'>
+      <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">My Collection</a></li>
+     </LinkContainer>
      <LinkContainer to='/myjourney'>
       <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">My Journey</a></li>
       </LinkContainer>
-      <LinkContainer to='/updateprofile'>
-      <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">Update Profile</a></li>
-      </LinkContainer>
-
       <li className="nav-item"><a href="#" className="nav-link px-2 text-dark">About this App</a></li>
     </ul>
     <p className="text-center text-dark">© disc journey</p>

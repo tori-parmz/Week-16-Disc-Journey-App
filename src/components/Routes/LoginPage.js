@@ -1,29 +1,44 @@
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
+import { Card } from 'react-bootstrap';
 
 const LoginPage = () => {
     return (
         <div className="container-fluid" id="login-page">
+            <div className='container'>
+                <div className='row'>
+                    <div className='col text-center'>
+                    <img src='./Assets/logo-with-tagline.png' id='logo-login-page'></img>
+                    </div>   
+                </div>
+                <div className='row align-items-center'>
+                    <div className='col'>
+
+                    </div>
+            <Card className='p-3' id='login-card'>
+                <Card.Body>
             <Form>
-      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-        <Form.Label column sm="2">
+      <Form.Group className="mb-3" controlId="formPlaintextEmail">
+        <Form.Label>
           Email
         </Form.Label>
-        <Col sm="10">
-          <Form.Control plaintext readOnly defaultValue="email@example.com" />
-        </Col>
+          <Form.Control type="plaintext" readOnly defaultValue="email@example.com" />
       </Form.Group>
 
-      <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-        <Form.Label column sm="2">
+      <Form.Group className="mb-3" controlId="formPlaintextPassword">
+        <Form.Label>
           Password
         </Form.Label>
-        <Col sm="10">
           <Form.Control type="password" placeholder="Password" />
-        </Col>
       </Form.Group>
+      <Button variant="success">Login</Button>
     </Form>
+    </Card.Body>
+    </Card>
+    </div>
+    </div>
 
         </div>
     )

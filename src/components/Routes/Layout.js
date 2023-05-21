@@ -7,13 +7,15 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
-import "../../Assets/disc-journey-logo.png";
+import ProfilePhotoSm from '../ProfilePhotoSm';
+
 
 const Layout = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+ 
   return (
     <>
     <Navbar className="sticky-top" expand="lg" id='navbar'>
@@ -58,12 +60,23 @@ const Layout = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    {/* Off Canvas */}
       <Offcanvas id="off-canvas-menu" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+          <ProfilePhotoSm id="off-canvas-profile" />
+        <p className="lead mt-1">User Name</p>
+        <p className="fw-light lh-sm">Join Date</p>
+        <p className="fw-light lh-sm">Collection Size</p>
+          <Nav defaultActiveKey="/home" className="flex-column mt-3" id='off-canvas-nav'>
+      <Nav.Link className='text-light'>Update Profile</Nav.Link>
+      <Nav.Link className='text-light'>New Entry</Nav.Link>
+      <Nav.Link className='text-light'>My Collection</Nav.Link>
+      <Nav.Link className='text-light'>My Journey</Nav.Link>
+      <Nav.Link className='text-light'>Logout</Nav.Link>
+    </Nav>
+    <img src='./Assets/disc-journey-logo.png' id='offcanvas-logo'></img>
         </Offcanvas.Body>
       </Offcanvas>
       <div className='App-header'>

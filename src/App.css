@@ -23,10 +23,12 @@
 
 #off-canvas-menu {
   background: rgba(250, 163, 96, 0.896);
+  justify-content: center;
+  text-align: center;
 }
 
 #profile-header {
-  background-image: url('./Assets/zetong-li-background.jpg');
+  background-image: url('../public/Assets/zetong-li-background.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: 30%;
@@ -55,4 +57,33 @@
 
 #track-list{
   text-align: left;
+}
+
+#new-entry-form{
+  justify-content: center;
+}
+
+#off-canvas-profile{
+  margin-top: 10%;
+}
+
+.profile-photo{
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ffffff;
+}
+
+#login-card{
+  margin-top: 10%;
+  background-color: rgba(255, 255, 255, 0.663);
+}
+
+#logo-login-page{
+  width: 20rem;
+  margin-top: 1rem;
+}
+
+#offcanvas-logo{
+  width: 10rem;
 }

@@ -7,7 +7,7 @@
 //modal review form
 import CoverArtLg from "../CoverArtLg";
 import AlbumMetadata from "../AlbumMetadata";
-import TrackList from "./TrackList";
+import TrackList from "../TrackList";
 
 const AlbumInfo = () => {
     return (

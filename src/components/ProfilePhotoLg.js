@@ -1,8 +1,7 @@
-// import { Image } from "react-bootstrap";
 
-// export default function ProfilePhotoLg() {
-//     return (
-//         <Image src="./tori-headshot-smaller.png/171x180" roundedCircle />
-//     )
+export default function ProfilePhotoLg() {
+    return (
+        <img src="./Assets/tori-headshot-smaller.png" height={'200px'} className="profile-photo"/>
+    )
 
-// };
+};

@@ -69,6 +69,13 @@
   border-color: #ffffff;
 }
 
+.profile-photo-icon{
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+}
+
 #login-card{
   margin-top: 5%;
   margin-bottom: 10%;
@@ -92,4 +99,8 @@
 
 #cover-art-grid{
   margin-top: 3%;
+}
+
+#text-wrapping{
+  word-break: break-word;
 }

@@ -1,3 +1,5 @@
+import { Button } from "react-bootstrap";
+
 export default function UpdateProfileForm() {
     return (
         <form method="post" enctype="multipart/form-data">
@@ -10,7 +12,7 @@ export default function UpdateProfileForm() {
       accept=".jpg, .jpeg, .png" />
   </div>
   <div>
-    <button>Submit</button>
+    <Button>Submit</Button>
   </div>
 </form>
     )

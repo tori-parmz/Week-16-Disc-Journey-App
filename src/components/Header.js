@@ -1,8 +1,19 @@
-import { Image } from "react-bootstrap";
 import ProfilePhotoLg from "./ProfilePhotoLg";
+import { useSelector } from "react-redux";
+
 
 
 export default function Header() {
+    // console.log(useSelector((store)=>{console.log(store);
+    // })
+    // );
+    const collectionSize = useSelector((store => store.collection.collectionSize));
+    const joinDate = useSelector((store => store.userdata.joinDate));
+    const firstName = useSelector((store => store.userdata.firstName));
+    const lastName = useSelector((store => store.userdata.lastName));
+    const testArray = Array.from("one, two, three, four");
+    console.log(testArray);
+
     return(
         <div className="jumbotron jumbotron-fluid text-center" id="profile-header">
         <div className="container">
@@ -10,9 +21,9 @@ export default function Header() {
             <div className="col mt-5">
                 <ProfilePhotoLg />
         
-        <p className="lead mt-1">User Name</p>
-        <p className="fw-light lh-sm">Join Date</p>
-        <p className="fw-light lh-sm">Collection Size</p>
+        <p className="lead mt-1">{firstName}{' '}{lastName}</p>
+        <p className="fw-light lh-sm">Joined: {joinDate}</p>
+        <p className="fw-light lh-sm">Collection Size: {collectionSize}</p>
         </div>
         </div>
         </div>

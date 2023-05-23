@@ -8,31 +8,37 @@ import Typography from '@mui/material/Typography';
 import { CardActions, Button } from '@mui/material';
 import ProfilePhotoIcon from './ProfilePhotoIcon'
 import CardHeader from '@mui/material/CardHeader';
-import Container from '@mui/material/Container';
+import Badge from 'react-bootstrap/Badge';
+import { useSelector } from 'react-redux';
+import Stack from '@mui/material/Stack';
 
 
-export default function AlbumReview() {
-  const theme = useTheme();
+export default function AlbumReview(props) {
+  const firstName = useSelector((store => store.userdata.firstName));
+  const lastName = useSelector((store => store.userdata.lastName));
+  let { collectionItem } = props;
+  const { title, artistName, coverArt, releaseDate, myReview, tags, id } = collectionItem
+
 
   return (
     <Card sx={{ display: 'flex', pr: 2, }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', width:'min-content' }}>
       <CardMedia
         component="img"
-        sx={{ width: 150, margin: 2 }}
-        image="https://i.discogs.com/MCASre9uU0pQ3TdfiNK-6Fsb8HF0WEvm-8iOFNBlo60/rs:fit/g:sm/q:90/h:602/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODYx/ODYtMTQ0NDY2NjQ4/Ny03NTU4LmpwZWc.jpeg"
+        sx={{ maxWidth: 150, width: 'auto', margin: 2 }}
+        image={coverArt}
         alt="Album cover"
       />
       
         <CardContent sx={{ flex: '1 0 auto', min: 200 }}>
           <Typography component="div" variant="h5">
-            Hounds of Love
+            {title}
           </Typography>
           <Typography component="div" variant="h6">
-          Kate Bush
+          {artistName}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            1985
+            {releaseDate}
           </Typography>
           
         </CardContent>
@@ -40,14 +46,14 @@ export default function AlbumReview() {
         <Button size="small" color="primary">
           Edit
         </Button>
-        <Button size="small" color="secondary">
+        <Button size="small" color="error">
           Delete
         </Button>
       </CardActions>
       
       
       </Box>
-      <Box sx={{ flex: '1 1 auto', margin: 2 }}>
+      <Box sx={{ flex: '1 1 auto', margin: 2, paddingRight: 2 }}>
         
       <CardHeader sx={{width:'max-content'}}
       
@@ -55,15 +61,25 @@ export default function AlbumReview() {
           <ProfilePhotoIcon />
         }
        
-        title="User Name"
-        subheader="Date"
+        title={firstName}
+        subheader={new Date().toLocaleString()}
       />
-       
+       <Box sx={{width: '30em'}}>
+        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
         
-        <Typography>
-          Tags
-        </Typography>
-        <Box sx={{ typography: 'body1' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </Box>
+        {tags.map((tag, index) => {
+          return (
+            <Badge bg="warning" id='tags'
+            key={index}
+            >{tag}</Badge>
+          )
+        })}
+        </Stack>
+        </Box>
+      
+        <Box sx={{ typography: 'body1' }}>
+        {myReview}
+           </Box>
         
         
 

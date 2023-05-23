@@ -16,7 +16,7 @@ export async function getCollection() {
     }
   }
 
-export async function postCategory(e, categoryName) {
+export async function postCategory(e, albumName) {
     e.preventDefault(); //used for things wrapped in a form, keeps it from refreshing the page before using contents
     try {
       let response = await fetch(albumsApi, {
@@ -24,7 +24,7 @@ export async function postCategory(e, categoryName) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ categoryName }),
+        body: JSON.stringify({ albumName }),
       });
       const result = await response.json(); // parse the response body as JSON
       setMyCollection([...myCollection, result]); // update the state with the new category
@@ -36,7 +36,7 @@ export async function postCategory(e, categoryName) {
     e.target.reset();
   }
 
-export async function deleteCategory(id) {
+export async function deleteAlbum(id) {
     try {
       await fetch(albumsApi + `/${id}`, {
         //deletes category by its ID

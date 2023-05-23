@@ -10,6 +10,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import ProfilePhotoSm from '../ProfilePhotoSm';
 import UpdateProfileNavBar from '../UpdateProfileNavBar';
 import UpdateProfileOffcanvas from '../UpdateProfileOffcanvas';
+import { useSelector } from 'react-redux';
 
 
 const Layout = () => {
@@ -17,6 +18,10 @@ const Layout = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const joinDate = useSelector((store => store.userdata.joinDate));
+  const firstName = useSelector((store => store.userdata.firstName));
+  const lastName = useSelector((store => store.userdata.lastName));
+  const collectionSize = useSelector((store => store.collection.collectionSize));
  
   return (
     <>
@@ -65,9 +70,9 @@ const Layout = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ProfilePhotoSm id="off-canvas-profile" />
-        <p className="lead mt-1">User Name</p>
-        <p className="fw-light lh-sm">Join Date</p>
-        <p className="fw-light lh-sm">Collection Size</p>
+        <p className="lead mt-1">{firstName} {lastName}</p>
+        <p className="fw-light lh-sm">Joined: {joinDate}</p>
+        <p className="fw-light lh-sm">Collection Size: {collectionSize}</p>
           <Nav defaultActiveKey="/home" className="flex-column mt-3" id='off-canvas-nav'>
       <Nav.Link as={UpdateProfileOffcanvas} className='text-light'>Update Profile</Nav.Link>
       <LinkContainer to='/newentry'>

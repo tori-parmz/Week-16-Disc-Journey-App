@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     firstName: 'Tori',
     lastName: 'Parham',
-    profilePhoto: 'https://ibb.co/qWWX5yp',
+    profilePhoto: 'https://i.ibb.co/3MMGzrc/tori-headshot-smaller.png',
     joinDate: 'May 23, 2023',
 }
 

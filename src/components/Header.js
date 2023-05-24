@@ -11,8 +11,6 @@ export default function Header() {
     const joinDate = useSelector((store => store.userdata.joinDate));
     const firstName = useSelector((store => store.userdata.firstName));
     const lastName = useSelector((store => store.userdata.lastName));
-    const testArray = Array.from("one, two, three, four");
-    console.log(testArray);
 
     return(
         <div className="jumbotron jumbotron-fluid text-center" id="profile-header">

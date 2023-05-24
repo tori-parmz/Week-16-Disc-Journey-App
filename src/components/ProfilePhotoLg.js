@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux";
 
 export default function ProfilePhotoLg() {
+    const profilePhoto = useSelector((store => store.userdata.profilePhoto));
     return (
-        <img src="./Assets/tori-headshot-smaller.png" height={'200px'} className="profile-photo"/>
+        <img src={profilePhoto} height={'200px'} className="profile-photo"/>
     )
 
 };

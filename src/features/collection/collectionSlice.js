@@ -17,6 +17,24 @@ export const getCollectionItems = createAsyncThunk('collection/getCollectionItem
       }
 })
 
+export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', async (newReview) => {
+    try {
+        let response = await fetch(albumApi, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ newReview }),
+        });
+        return await response.json(); // parse the response body as JSON
+        
+      } catch (error) {
+        console.error(error);
+      }
+        })  //used for things wrapped in a form, keeps it from refreshing the page before using contents
+   
+  
+
 export const deleteAlbum = createAsyncThunk('collection/deleteAlbum', async (id) => {
     try {
         const response = await fetch(albumApi + `/${id}`, {
@@ -44,10 +62,6 @@ const collectionSlice = createSlice({
     initialState,
     reducers: {
 
-        postItem: (state, newCollectionItem) => {
-            state.collectionItems.push(newCollectionItem);
-
-    },
 
         updateReview: (state, {payload}) => {
         const collectionItem = state.collectionItems.find((item) => 
@@ -69,6 +83,11 @@ extraReducers: (builder) => {
     builder
       .addCase(getCollectionItems.fulfilled, (state, action) => {
         console.log(action);
+        state.collectionItems = action.payload;
+      })
+      .addCase(postAlbumReview.fulfilled, (state, action) => {
+        console.log(action);
+        // post
         state.collectionItems = action.payload;
       })
       .addCase(deleteAlbum.fulfilled, (state, action) => {

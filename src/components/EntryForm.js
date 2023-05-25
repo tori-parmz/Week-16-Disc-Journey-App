@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { postItem } from "../features/collection/collectionSlice";
+import { postAlbumReview } from "../features/collection/collectionSlice";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 //needs to dispatch create method
@@ -28,7 +28,7 @@ export default function EntryForm(){
       myReview: newReview
       };
 
-      dispatch(postItem(newCollectionItem));
+      dispatch(postAlbumReview(newCollectionItem));
       setAlbumTitle('');
       setAlbumArt('');
       setArtist('');

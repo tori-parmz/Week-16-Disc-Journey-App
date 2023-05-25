@@ -46,6 +46,9 @@ const Layout = () => {
           <LinkContainer to='/myjourney'>
             <Nav.Link>My Journey</Nav.Link>
             </LinkContainer>
+            <LinkContainer to='/about'>
+            <Nav.Link>About</Nav.Link>
+      </LinkContainer>
             <NavDropdown title="Account" id="basic-nav-dropdown">
             <NavDropdown.Item as={UpdateProfileNavBar}>Update Profile</NavDropdown.Item>
               <LinkContainer to='/newentry'>

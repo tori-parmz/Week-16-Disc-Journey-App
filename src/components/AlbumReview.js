@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import Stack from "@mui/material/Stack";
 import EditModal from "./EditModal";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../features/collection/collectionSlice";
+import { deleteAlbum } from '../features/collection/collectionSlice';
 
 //needs to dispatch delete and update methods
 
@@ -54,7 +54,7 @@ export default function AlbumReview(props) {
           <Button size="small" color="primary">
             Edit
           </Button>
-          <Button size="small" color="error" onClick={() => {dispatch(removeItem(id))}}>
+          <Button size="small" color="error" onClick={() => {dispatch(deleteAlbum(id))}}>
             Delete
           </Button>
         </CardActions>

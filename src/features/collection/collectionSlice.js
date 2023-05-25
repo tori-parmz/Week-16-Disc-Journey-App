@@ -1,32 +1,36 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
+
 const albumApi = "https://64659acb228bd07b354e1cfd.mockapi.io/mycollection/album";
+
+
 
 export const getCollectionItems = createAsyncThunk('collection/getCollectionItems', async () => {
     try {
         const response = await fetch(albumApi);
         console.log(response);
-        const data = response.json();
+        const data = await response.json();
         return data;
       } catch (error) {
         console.log(error);
       }
 })
 
-export const deleteAlbum = createAsyncThunk('collection/deleteAlbum', (id => {
+export const deleteAlbum = createAsyncThunk('collection/deleteAlbum', async (id) => {
     try {
-        fetch(albumApi + `/${id}`, {
+        const response = await fetch(albumApi + `/${id}`, {
           //deletes category by its ID
           method: "DELETE",
         });
-        const response = getCollectionItems;
-        return response
+
+        return response.json();
+        
          //updates collection in state to reflect the change
       } catch (error) {
         console.error(error);
       }
-})) 
+}) 
     
 
 const initialState = {
@@ -42,16 +46,6 @@ const collectionSlice = createSlice({
 
         postItem: (state, newCollectionItem) => {
             state.collectionItems.push(newCollectionItem);
-
-    },
-
-
-
-        removeItem: (state, action) => {
-            const itemId = action.payload
-            state.collectionItems = state.collectionItems.filter((item) =>
-            item.id !== itemId);
-            state.collectionItems = deleteAlbum
 
     },
 
@@ -71,16 +65,24 @@ const collectionSlice = createSlice({
           },
         
 },
-    extraReducers: {
-        [getCollectionItems.fulfilled]: (state, action) => {
-            console.log(action);
-            state.collectionItems = action.payload
-        }
-    }
+extraReducers: (builder) => {
+    builder
+      .addCase(getCollectionItems.fulfilled, (state, action) => {
+        console.log(action);
+        state.collectionItems = action.payload;
+      })
+      .addCase(deleteAlbum.fulfilled, (state, action) => {
+        console.log(action);
+        // Remove the deleted album from the collectionItems array
+        state.collectionItems = state.collectionItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+      });
+  },
 
 
 });
 
-export const { removeItem, postItem, calculateTotals  } = collectionSlice.actions;
+export const { postItem, calculateTotals  } = collectionSlice.actions;
 
 export default collectionSlice.reducer;

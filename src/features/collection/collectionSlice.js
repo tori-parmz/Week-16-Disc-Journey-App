@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import collectionItems from '../../collection';
 
 
 const albumApi = "https://64659acb228bd07b354e1cfd.mockapi.io/mycollection/album";
@@ -14,6 +13,21 @@ export const getCollectionItems = createAsyncThunk('collection/getCollectionItem
         console.log(error);
       }
 })
+
+export const deleteAlbum = createAsyncThunk('collection/deleteAlbum', (id => {
+    try {
+        fetch(albumApi + `/${id}`, {
+          //deletes category by its ID
+          method: "DELETE",
+        });
+        const response = getCollectionItems;
+        return response
+         //updates collection in state to reflect the change
+      } catch (error) {
+        console.error(error);
+      }
+})) 
+    
 
 const initialState = {
     collectionItems: [],
@@ -37,7 +51,7 @@ const collectionSlice = createSlice({
             const itemId = action.payload
             state.collectionItems = state.collectionItems.filter((item) =>
             item.id !== itemId);
-            console.log(action);
+            state.collectionItems = deleteAlbum
 
     },
 
@@ -48,12 +62,12 @@ const collectionSlice = createSlice({
         },
 
         calculateTotals: (state) => {
-            let collectionItems = [];
-
+            let collectionSize = 0;
             state.collectionItems.forEach((item) => {
-              collectionItems.push(item);
+                collectionSize += item
             });
-            state.collectionSize = collectionItems.length;
+            state.collectionSize = collectionSize;
+            
           },
         
 },

@@ -9,9 +9,18 @@ import NoPage from './components/Routes/NoPage';
 import Layout from './components/Routes/Layout';
 import "bootstrap/dist/css/bootstrap.min.css";
 import NewEntry from './components/Routes/NewEntry';
+import AboutPage from './components/Routes/AboutPage';
+import { useEffect } from 'react';
+import { getCollectionItems } from './features/collection/collectionSlice';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
+  const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(getCollectionItems());
+    }, []);
   return (
     <BrowserRouter>
       <Routes>
@@ -19,8 +28,9 @@ function App() {
           <Route index element={<MyCollection />} />
           <Route path="myjourney" element={<MyJourney />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="albuminfo/" element={<AlbumInfo />} />
+          <Route path="albuminfo" element={<AlbumInfo />} />
           <Route path="newentry" element={<NewEntry />} />
+          <Route path="about" element={<AboutPage />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

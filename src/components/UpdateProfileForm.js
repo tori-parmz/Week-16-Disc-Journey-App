@@ -20,6 +20,19 @@ export default function UpdateProfileForm() {
           Input the image URL
         </Form.Text>
       </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>New User?</Form.Label>
+        <Form.Check 
+        type="switch"
+        id="custom-switch"
+        label="Check this switch"
+      />
+        
+        <Form.Text className="text-muted">
+          Checking this will clear the collection and create a new join date.
+        </Form.Text>
+      </Form.Group>
+      
       </Form>
       <Button>Submit</Button>
     </div>

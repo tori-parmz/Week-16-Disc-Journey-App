@@ -2,9 +2,10 @@ import Grid from '@mui/material/Unstable_Grid2';
 import CovertArtSm from "./CoverArtSm";
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import collectionItems from '../collection';
+import { useSelector } from 'react-redux';
 
 export default function CoverArtGrid() {
+    const collectionItems = useSelector((store) => store.collection.collectionItems);
 
     return (
         <Box sx={{ flexGrow: 1 }} id="cover-art-grid">

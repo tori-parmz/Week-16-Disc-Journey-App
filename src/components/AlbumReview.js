@@ -18,7 +18,6 @@ import { removeItem } from "../features/collection/collectionSlice";
 
 export default function AlbumReview(props) {
   const firstName = useSelector((store) => store.userdata.firstName);
-  const lastName = useSelector((store) => store.userdata.lastName);
   const dispatch = useDispatch();
   let { collectionItem } = props;
   const { title, artistName, coverArt, releaseDate, myReview, tags, id } =

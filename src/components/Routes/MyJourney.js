@@ -1,6 +1,5 @@
 import Header from "../Header";
 import AlbumReview from "../AlbumReview";
-import EditForm from "../EditForm";
 import collectionItems from "../../collection";
 
 const MyJourney = () => {
@@ -17,7 +16,7 @@ const MyJourney = () => {
                 </div>
                 <div className="col-10 align-self-center">
                 <AlbumReview 
-                key={index}
+                key={collectionItem.id}
                 collectionItem={collectionItem}
                 {...collectionItem}
                 />
@@ -29,9 +28,6 @@ const MyJourney = () => {
             })}
 
         </div>
-            
-
-        <EditForm />
         
         </>
         

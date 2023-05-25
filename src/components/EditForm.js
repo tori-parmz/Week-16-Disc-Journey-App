@@ -24,15 +24,28 @@ export default function EditForm(){
         <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Album Title</Form.Label>
-        <Form.Control type="text" defaultValue={collectionItem.title}/>
+        <Form.Control type="text" defaultValue={collectionItem.title}
+        onChange={(e) => {
+          setAlbumTitle(e.target.value);}}
+          />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Artist Name</Form.Label>
-        <Form.Control type="text" defaultValue={collectionItem.artistName} />
+        <Form.Control type="text" defaultValue={collectionItem.artistName}
+        onChange={(e) => {
+          setArtist(e.target.value);
+        }} 
+        
+        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Album Art</Form.Label>
-        <Form.Control type="text" defaultValue={collectionItem.coverArt} />
+        <Form.Control type="text" defaultValue={collectionItem.coverArt} 
+        onChange={(e) => {
+          setAlbumArt(e.target.value);
+        }}
+        
+        />
         <Form.Text className="text-muted">
           Input the image URL
         </Form.Text>
@@ -71,9 +84,10 @@ export default function EditForm(){
         <Form.Control as="textarea" defaultValue={collectionItem.myReview} onChange={(e)=>{
           if(e.target.value.length > 1000){
             alert('Character Limit: 1000');
-            e.target.value.slice(-1);
+            e.target.value = e.target.value.slice(0, 1000);
           } else {
-            
+            setNewReview(e.target.value);
+            console.log(newReview);    
           }
 
         }}/>
@@ -81,7 +95,7 @@ export default function EditForm(){
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>Tags</Form.Label>
-        <Form.Control type="text" defaultValue={collectionItem.tags} 
+        <Form.Control type="text" defaultValue={collectionItem.tags.toString()} 
         onKeyUp={(e)=> {
           if(e.code === "Comma") {
             if(e.target.value.length < 2) {

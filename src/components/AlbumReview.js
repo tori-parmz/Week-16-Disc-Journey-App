@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -12,10 +11,15 @@ import Badge from "react-bootstrap/Badge";
 import { useSelector } from "react-redux";
 import Stack from "@mui/material/Stack";
 import EditModal from "./EditModal";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../features/collection/collectionSlice";
+
+//needs to dispatch delete and update methods
 
 export default function AlbumReview(props) {
   const firstName = useSelector((store) => store.userdata.firstName);
   const lastName = useSelector((store) => store.userdata.lastName);
+  const dispatch = useDispatch();
   let { collectionItem } = props;
   const { title, artistName, coverArt, releaseDate, myReview, tags, id } =
     collectionItem;
@@ -51,7 +55,7 @@ export default function AlbumReview(props) {
           <Button size="small" color="primary">
             Edit
           </Button>
-          <Button size="small" color="error">
+          <Button size="small" color="error" onClick={() => {dispatch(removeItem(id))}}>
             Delete
           </Button>
         </CardActions>

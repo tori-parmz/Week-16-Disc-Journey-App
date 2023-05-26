@@ -21,7 +21,9 @@ export default function UpdateProfileNavBar() {
           <Modal.Title>Update Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <UpdateProfileForm />
+          <UpdateProfileForm
+          handleClose={handleClose}
+          />
         </Modal.Body>
       </Modal>
     </>

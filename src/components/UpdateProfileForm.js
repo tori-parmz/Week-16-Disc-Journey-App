@@ -1,20 +1,45 @@
 import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteUser, postNewUser } from "../features/userdata/userDataSlice";
 
-export default function UpdateProfileForm() {
+export default function UpdateProfileForm(props) {
+  const { handleClose } = props;
   const [newFirstName, setNewFirstName] = useState('');
   const [newLastName, setNewLastName] = useState('');
   const [newProfile, setNewProfile] = useState('');
   var radioValue = null;
+  const dispatch = useDispatch();
 
   const handleCheck = (e) => {
     radioValue = e.target.checked;
     console.log(radioValue);
   };
+  const handleSubmit = (e) => {
 
-  //function for onClick: if radioValue === false: update state
-  //if radioValue === true, create new user object, delete data & post user object 
-  //default profile photo
+    if (newFirstName === "") {
+      alert("First Name Required");
+    } else if (newLastName === "") {
+        alert("Last Name Required")
+    } else if (radioValue === true) {
+
+      e.preventDefault();
+
+      const newUserData = {
+        firstName: newFirstName,
+        lastName: newLastName,
+        profilePhoto: newProfile || "./Assets/default-profile-photo.png"
+
+      }
+
+      dispatch(deleteUser());
+      dispatch(postNewUser(newUserData));
+      handleClose();
+
+    } 
+    //function for onClick: if radioValue === false: update state
+
+  }
     return (
       <div>
 
@@ -37,7 +62,7 @@ export default function UpdateProfileForm() {
           setNewProfile(e.target.value)
         }}/>
         <Form.Text className="text-muted">
-          Input the image URL
+          Input the image URL — optional
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -56,7 +81,7 @@ export default function UpdateProfileForm() {
       </Form.Group>
       
       </Form>
-      <Button>Submit</Button>
+      <Button onClick={handleSubmit}>Submit</Button>
     </div>
     )
 }

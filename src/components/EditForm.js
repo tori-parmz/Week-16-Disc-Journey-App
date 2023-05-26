@@ -13,7 +13,7 @@ export default function EditForm(props){
     const [editedAlbumTitle, setEditedAlbumTitle] = useState(title);
     const [editedArtist, setEditedArtist] = useState(artistName);
     const [editedAlbumArt, setEditedAlbumArt] = useState(coverArt);
-    const [editedTrackList, setEditedTrackList] = useState(trackList.toString());
+    // const [editedTrackList, setEditedTrackList] = useState(trackList.toString());
     const [editedTags, setEditedTags] = useState(tags.toString());
     const [editedReview, setEditedReview] = useState(myReview);
     const [editedReleaseDate, setEditedReleaseDate] = useState(releaseDate);
@@ -38,7 +38,7 @@ export default function EditForm(props){
           title: editedAlbumTitle,
           artistName: editedArtist,
           releaseDate: editedReleaseDate,
-          trackList: editedTrackList.split(","),
+          // trackList: editedTrackList.split(","),
           coverArt: editedAlbumArt || "./Assets/default-album-art.png",
           myReview: editedReview,
           tags: editedTags.split(","),
@@ -94,7 +94,7 @@ export default function EditForm(props){
           console.log(editedReleaseDate);
         }} />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Track List</Form.Label>
         <Form.Control type="text" defaultValue={editedTrackList} onKeyUp={(e)=> {
           if(e.code === 188) {
@@ -116,7 +116,7 @@ export default function EditForm(props){
         <Form.Text className="text-muted">
           Input song titles separated by a commas followed by no spaces.
         </Form.Text>
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <FloatingLabel
         controlId="floatingTextarea"

@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteUser, postNewUser, updateUser } from "../features/userdata/userDataSlice";
+import { postNewUser, updateUser } from "../features/userdata/userDataSlice";
 
 export default function UpdateProfileForm(props) {
   const { handleClose } = props;
@@ -31,8 +31,6 @@ export default function UpdateProfileForm(props) {
         profilePhoto: newProfile || "./Assets/default-profile-photo.png",
 
       }
-
-      dispatch(deleteUser());
       dispatch(postNewUser(newUserData));
       handleClose();
 
@@ -42,6 +40,7 @@ export default function UpdateProfileForm(props) {
         lastName: newLastName,
         profilePhoto: newProfile || "./Assets/default-profile-photo.png",
       }
+
 
       dispatch(updateUser(updatedUser));
       handleClose();

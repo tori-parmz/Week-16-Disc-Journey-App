@@ -9,7 +9,7 @@ export default function EntryForm() {
   const [albumTitle, setAlbumTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [albumArt, setAlbumArt] = useState("");
-  const [trackList, setTrackList] = useState([]);
+  // const [trackList, setTrackList] = useState([]);
   const [releaseDate, setReleaseDate] = useState("");
   const [tags, setTags] = useState([]);
   const [newReview, setNewReview] = useState("");
@@ -31,7 +31,7 @@ export default function EntryForm() {
         title: albumTitle,
         artistName: artist,
         releaseDate: releaseDate,
-        trackList: trackList.split(" ,"),
+        // trackList: trackList.split(" ,"),
         coverArt: albumArt || "./Assets/default-album-art.png",
         myReview: newReview,
         tags: tags.split(" ,"),
@@ -45,7 +45,7 @@ export default function EntryForm() {
       setReleaseDate("");
       setTags([]);
       setNewReview("");
-      setTrackList([]);
+      // setTrackList([]);
     }
   };
 
@@ -88,7 +88,7 @@ export default function EntryForm() {
           onChange={(e) => setReleaseDate(e.target.value)}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Track List</Form.Label>
         <Form.Control
           type="text"
@@ -106,7 +106,7 @@ export default function EntryForm() {
         <Form.Text className="text-muted">
           Input song titles separated by a comma and space.
         </Form.Text>
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <FloatingLabel controlId="floatingTextarea" label="Review" className="mb-3">
           <Form.Control

@@ -42,7 +42,8 @@ export const updatePost = createAsyncThunk('collection/updatePost', async(id, up
       },
       body: JSON.stringify(updatedCollectionItem),
     });
-    return await response.json();
+    // return await response.json();
+    console.log(await response.json());
   } catch (error) {
     console.log(error);
   }

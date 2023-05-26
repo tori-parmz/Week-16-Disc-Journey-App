@@ -42,6 +42,7 @@ export default function EditForm(props){
           coverArt: editedAlbumArt || "./Assets/default-album-art.png",
           myReview: editedReview,
           tags: editedTags.split(","),
+          id: id,
         };
   
         dispatch(updatePost(id, updatedCollectionItem));
@@ -58,7 +59,9 @@ export default function EditForm(props){
         <Form.Label>Album Title</Form.Label>
         <Form.Control type="text" defaultValue={editedAlbumTitle}
         onChange={(e) => {
-          setEditedAlbumTitle(e.target.value);}}
+          setEditedAlbumTitle(e.target.value);
+          console.log(editedAlbumTitle);
+        }}
           />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -66,6 +69,7 @@ export default function EditForm(props){
         <Form.Control type="text" defaultValue={editedArtist}
         onChange={(e) => {
           setEditedArtist(e.target.value);
+          console.log(editedArtist);
         }} 
         
         />
@@ -75,6 +79,7 @@ export default function EditForm(props){
         <Form.Control type="text" defaultValue={editedAlbumArt}
         onChange={(e) => {
           setEditedAlbumArt(e.target.value);
+          console.log(editedAlbumArt);
         }}
         
         />
@@ -86,6 +91,7 @@ export default function EditForm(props){
         <Form.Label>Release Date</Form.Label>
         <Form.Control type="text" defaultValue={editedReleaseDate} onChange={(e) => {
           setEditedReleaseDate(e.target.value);
+          console.log(editedReleaseDate);
         }} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -104,6 +110,7 @@ export default function EditForm(props){
               setEditedTrackList([]);
             } else {
               setEditedTrackList(newTrackList);
+              console.log(editedTrackList);
             }
           }} />
         <Form.Text className="text-muted">
@@ -146,6 +153,7 @@ export default function EditForm(props){
               setEditedTags([]);
             } else {
               setEditedTags(newTagList);
+              console.log(newTagList);
             }
           }} />
         <Form.Text className="text-muted">

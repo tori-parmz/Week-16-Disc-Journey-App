@@ -12,12 +12,11 @@ const MyJourney = () => {
             
             collectionItems.map((collectionItem, index) => {
                 return (
-                <div className="row my-4">
+                <div className="row my-4" key={index}>
                 <div className="col-1">
                 </div>
                 <div className="col-10 align-self-center">
                 <AlbumReview 
-                key={index}
                 collectionItem={collectionItem}
                 {...collectionItem}
                 />

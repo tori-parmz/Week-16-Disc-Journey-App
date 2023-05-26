@@ -31,10 +31,10 @@ export default function EntryForm() {
         title: albumTitle,
         artistName: artist,
         releaseDate: releaseDate,
-        trackList: trackList.split(","),
+        trackList: trackList.split(" ,"),
         coverArt: albumArt || "./Assets/default-album-art.png",
         myReview: newReview,
-        tags: tags.split(","),
+        tags: tags.split(" ,"),
       };
 
       dispatch(postAlbumReview(newCollectionItem));

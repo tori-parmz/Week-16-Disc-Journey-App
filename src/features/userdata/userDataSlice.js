@@ -4,7 +4,7 @@ const userDataApi = 'https://64659acb228bd07b354e1cfd.mockapi.io/mycollection/us
 
 export const getUserData = createAsyncThunk('userdata/getUserData', async () => {
     try {
-        const response = await fetch(userDataApi +'/1');
+        const response = await fetch(userDataApi + '/1');//fetches the one user item
         console.log(response);
         const data = await response.json();
         return data;
@@ -15,33 +15,47 @@ export const getUserData = createAsyncThunk('userdata/getUserData', async () => 
 
 export const deleteUser = createAsyncThunk('userdata/deleteUser', async () => {
   try {
-      const response = await fetch(userDataApi, {
-        //deletes category by its ID
+      const response = await fetch(userDataApi + '/1', {
+        //clears all userdata
         method: "DELETE",
       });
 
       return response.json();
-      
-       //updates collection in state to reflect the change
     } catch (error) {
       console.error(error);
     }
 })
 
-export const postNewUser = createAsyncThunk('collection/postNewUser', async (newUserData) => {
+export const postNewUser = createAsyncThunk('userdata/postNewUser', async (newUserData) => {
   try {
       let response = await fetch(userDataApi, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newUserData),
+        body: JSON.stringify(newUserData),//posts the ne user object
       });
       return await response.json(); // parse the response body as JSON
       
     } catch (error) {
       console.error(error);
     }
+      })
+
+      export const updateUser = createAsyncThunk('userdata/updateUser', async(id, updatedUser) => {
+        try {
+          let response = await fetch(userDataApi + `/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedUser),
+          });
+          // return await response.json();
+          console.log(await response.json());
+        } catch (error) {
+          console.log(error);
+        }
       })
 
 const initialState = {
@@ -84,6 +98,15 @@ const userDataSlice = createSlice({
             console.log(action);
             state.user = [];
           
+          })
+
+          .addCase(updateUser.fulfilled, (state, action) => {
+            const { id, updatedUser } = action.payload;
+            const index = state.user.findIndex((item) => item.id === action.payload.id);
+    
+          if (index !== id) {
+            state.user[index] = updatedUser;
+            }
           });
 }
 

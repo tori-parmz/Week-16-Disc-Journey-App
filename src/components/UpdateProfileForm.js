@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteUser, postNewUser } from "../features/userdata/userDataSlice";
+import { deleteUser, postNewUser, updateUser } from "../features/userdata/userDataSlice";
 
 export default function UpdateProfileForm(props) {
   const { handleClose } = props;
@@ -28,7 +28,7 @@ export default function UpdateProfileForm(props) {
       const newUserData = {
         firstName: newFirstName,
         lastName: newLastName,
-        profilePhoto: newProfile || "./Assets/default-profile-photo.png"
+        profilePhoto: newProfile || "./Assets/default-profile-photo.png",
 
       }
 
@@ -36,7 +36,16 @@ export default function UpdateProfileForm(props) {
       dispatch(postNewUser(newUserData));
       handleClose();
 
-    } 
+    } else {
+      const updatedUser = {
+        firstName: newFirstName,
+        lastName: newLastName,
+        profilePhoto: newProfile || "./Assets/default-profile-photo.png",
+      }
+
+      dispatch(updateUser(updatedUser));
+      handleClose();
+    }
     //function for onClick: if radioValue === false: update state
 
   }

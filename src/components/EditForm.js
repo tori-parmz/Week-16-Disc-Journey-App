@@ -45,7 +45,7 @@ export default function EditForm(props){
           id: id,
         };
   
-        dispatch(updatePost(id, updatedCollectionItem));
+        dispatch(updatePost({id, newData: {updatedCollectionItem}}));
         handleClose();
 
   

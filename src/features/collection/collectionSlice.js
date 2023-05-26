@@ -33,7 +33,7 @@ export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', as
       }
         })
 
-export const updatePost = createAsyncThunk('collection/updatePost', async (id, updatedCollectionItem) => {
+export const updatePost = createAsyncThunk('collection/updatePost', async ({id, updatedCollectionItem}) => {
   try {
     let response = await fetch(albumApi + `/${id}`, {
       method: "PUT",
@@ -43,7 +43,7 @@ export const updatePost = createAsyncThunk('collection/updatePost', async (id, u
       body: JSON.stringify(updatedCollectionItem),
     });
     // return await response.json();
-    console.log(await response.json());
+    return await response.json();
   } catch (error) {
     console.log(error);
   }
@@ -105,15 +105,14 @@ extraReducers: (builder) => {
         console.log(action);
         // post
         state.collectionItems.push(action.payload);
-      })
-      .addCase(updatePost.fulfilled, (state, action) => {
-        const { id, updatedPost } = action.payload;
-        const index = state.collectionItems.findIndex((item) => item.id === id);
-
-      if (index !== -1) {
-        state.collectionItems[index] = updatedPost;
+      
+      const updatedData = action.payload;
+        const index = state.findIndex((item) => item.id === updatedData.id);
+        if (index !== -1) {
+          state[index] = updatedData;
         }
-      })
+        })
+      
       
       .addCase(deleteAlbum.fulfilled, (state, action) => {
         console.log(action);

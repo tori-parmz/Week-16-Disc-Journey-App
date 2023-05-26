@@ -31,10 +31,10 @@ export default function EntryForm() {
         title: albumTitle,
         artistName: artist,
         releaseDate: releaseDate,
-        trackList: trackList.split(" ,"),
+        trackList: trackList.split(","),
         coverArt: albumArt || "./Assets/default-album-art.png",
         myReview: newReview,
-        tags: tags.split(" ,"),
+        tags: tags.split(","),
       };
 
       dispatch(postAlbumReview(newCollectionItem));
@@ -129,13 +129,6 @@ export default function EntryForm() {
           type="text"
           placeholder=""
           value={tags}
-          onKeyUp={(e) => {
-            if (e.code === "188") {
-              if (e.target.value.length < 2) {
-                e.target.value = "";
-              }
-            }
-          }}
           onChange={(e) => {
             const newTagList = e.target.value;
             if (newTagList.length === 0) {

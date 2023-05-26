@@ -100,9 +100,12 @@ extraReducers: (builder) => {
         state.collectionItems.push(action.payload);
       })
       .addCase(updatePost.fulfilled, (state, action) => {
-        console.log(action);
-        const collectionItem = state.collectionItems.find((item) => item.id == action.payload.id);
-        console.log(collectionItem);
+        const { id, updatedPost } = action.payload;
+        const index = state.collectionItems.findIndex((item) => item.id === id);
+
+      if (index !== -1) {
+        state.collectionItems[index] = updatedPost;
+        }
       })
       
       .addCase(deleteAlbum.fulfilled, (state, action) => {

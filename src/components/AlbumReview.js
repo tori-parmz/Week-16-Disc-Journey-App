@@ -18,7 +18,7 @@ export default function AlbumReview(props) {
   const firstName = useSelector((store) => store.userdata.firstName);
   const dispatch = useDispatch();
   const { collectionItem } = props;
-  const { title, artistName, coverArt, trackList, releaseDate, myReview, tags, id } = collectionItem;
+  const { title, artistName, coverArt, releaseDate, myReview, tags, id } = collectionItem;
 
   const [show, setShow] = useState(false);
 
@@ -65,7 +65,6 @@ export default function AlbumReview(props) {
           <Modal.Body>
             <EditForm 
             collectionItem={collectionItem}
-            trackList={trackList}
             handleClose={handleClose}
             />
           </Modal.Body>

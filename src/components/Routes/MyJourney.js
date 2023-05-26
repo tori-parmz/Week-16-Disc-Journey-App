@@ -10,14 +10,14 @@ const MyJourney = () => {
         <div className="container-fluid mt-3 mb-3">
             {
             
-            collectionItems.map((collectionItem) => {
+            collectionItems.map((collectionItem, index) => {
                 return (
                 <div className="row my-4">
                 <div className="col-1">
                 </div>
                 <div className="col-10 align-self-center">
                 <AlbumReview 
-                key={collectionItem.id}
+                key={index}
                 collectionItem={collectionItem}
                 {...collectionItem}
                 />

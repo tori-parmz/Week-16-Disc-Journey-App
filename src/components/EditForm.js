@@ -10,26 +10,26 @@ export default function EditForm(props){
   const { title, artistName, coverArt, releaseDate, myReview, tags, trackList, id } = collectionItem;
   const dispatch = useDispatch();
 
-    const [editedAlbumTitle, setEditedAlbumTitle] = useState(`${title}`);
-    const [editedArtist, setEditedArtist] = useState(`${artistName}`);
-    const [editedAlbumArt, setEditedAlbumArt] = useState(`${coverArt}`);
-    const [editedTrackList, setEditedTrackList] = useState(`${trackList}`);
-    const [editedTags, setEditedTags] = useState(`${tags}`);
-    const [editedReview, setEditedReview] = useState(`${myReview}`);
-    const [editedReleaseDate, setEditedReleaseDate] = useState(`${releaseDate}`);
+    const [editedAlbumTitle, setEditedAlbumTitle] = useState(title);
+    const [editedArtist, setEditedArtist] = useState(artistName);
+    const [editedAlbumArt, setEditedAlbumArt] = useState(coverArt);
+    const [editedTrackList, setEditedTrackList] = useState(trackList.toString());
+    const [editedTags, setEditedTags] = useState(tags.toString());
+    const [editedReview, setEditedReview] = useState(myReview);
+    const [editedReleaseDate, setEditedReleaseDate] = useState(releaseDate);
 
     console.log(trackList);
     console.log(tags);
 
 
-    const postToCollection = (e) => {
+    const updateCollectionItem = (e) => {
       e.preventDefault();
   
       if (editedAlbumTitle === "") {
         alert("Album Title Required");
       } else if (editedArtist === "") {
         alert("Artist Name Required");
-      } else if (releaseDate === "") {
+      } else if (editedReleaseDate === "") {
         alert("Release Date Required");
       } else if (editedReview === "") {
         alert("Album Review Required");
@@ -152,7 +152,7 @@ export default function EditForm(props){
           Input tags separated by a commas followed by no spaces.
         </Form.Text>
       </Form.Group>
-      <Button variant="primary" onClick={postToCollection}>
+      <Button variant="primary" onClick={updateCollectionItem}>
         Submit
       </Button>
     </Form>

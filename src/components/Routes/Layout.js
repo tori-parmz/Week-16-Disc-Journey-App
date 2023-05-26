@@ -15,35 +15,12 @@ import { useSelector } from 'react-redux';
 
 const Layout = () => {
   const [show, setShow] = useState(false);
-  const [formattedJoinDate, setFormattedJoinDate] = useState(null);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { user } = useSelector((store => store.userdata));
+  const { user, joinDate } = useSelector((store => store.userdata));
+  const { firstName, lastName } = user;
 
-  // console.log(users[userId-1]);
-
-  // const { firstName, lastName, joinDate } = user;
   const collectionSize = useSelector((store => store.collection.collectionSize));
-  // const joinDateConcat = async (joinDate) => {
-  //     try {
-  //       const formattedDate = joinDate.slice(5, 7) + "/" + joinDate.slice(8, 10) + "/" + joinDate.slice(0, 4);
-  //       return formattedDate;
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  // };
-  
-  // useEffect(() => {
-  //       const fetchFormattedJoinDate = async () => {
-  //         const formattedDate = await joinDateConcat(joinDate);
-  //         setFormattedJoinDate(formattedDate);
-  //       };
-      
-  //       fetchFormattedJoinDate();
-  //     }, [joinDate]);
-
-  //     console.log(formattedJoinDate);
   
  
   return (
@@ -91,13 +68,13 @@ const Layout = () => {
       </Container>
     </Navbar>
     {/* Off Canvas */}
-      {/* <Offcanvas id="off-canvas-menu" show={show} onHide={handleClose}>
+      <Offcanvas id="off-canvas-menu" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ProfilePhotoSm id="off-canvas-profile" />
         <p className="lead mt-1">{firstName} {lastName}</p>
-        <p className="fw-light lh-sm">Joined: {formattedJoinDate}</p>
+        <p className="fw-light lh-sm">Joined: {joinDate}</p>
         <p className="fw-light lh-sm">Collection Size: {collectionSize}</p>
           <Nav defaultActiveKey="/home" className="flex-column mt-3" id='off-canvas-nav'>
       <Nav.Link as={UpdateProfileOffcanvas} className='text-light'>Update Profile</Nav.Link>
@@ -114,7 +91,7 @@ const Layout = () => {
     </Nav>
     <img src='./Assets/disc-journey-logo.png' id='offcanvas-logo'></img>
         </Offcanvas.Body>
-      </Offcanvas> */}
+      </Offcanvas>
       <div className='App-header'> 
       <Outlet />
       </div>

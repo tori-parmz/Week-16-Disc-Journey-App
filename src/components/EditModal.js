@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import EditForm from './EditForm';
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from '../features/editModal/editModalSlice';
 
-export default function EditModal() {
-  const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+export default function EditModal(props) {
+  const { modalKey } = props;
+  const { isOpen } = useSelector((store) => store.modal);
+  const [show, setShow] = useState(isOpen);
+  const dispatch = useDispatch;
+
+  const handleClose = () => setShow(dispatch(closeModal));
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal key={modalKey} show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit</Modal.Title>
         </Modal.Header>

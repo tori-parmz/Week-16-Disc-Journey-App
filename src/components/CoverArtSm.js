@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 
 export default function CovertArtSm(props) {
     let { collectionItem } = props;
-    const { title, artistName, coverArt, releaseDate, id } = collectionItem
+    const { title, artistName, coverArt, releaseDate } = collectionItem
     return (
         <Col>
         <Figure style={{'textAlign':'center'}}>

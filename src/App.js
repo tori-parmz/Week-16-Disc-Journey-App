@@ -11,7 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NewEntry from './components/Routes/NewEntry';
 import AboutPage from './components/Routes/AboutPage';
 import { useEffect } from 'react';
-import { getCollectionItems, calculateTotals } from './features/collection/collectionSlice';
+import { getCollectionItems, calculateTotal } from './features/collection/collectionSlice';
 import { useDispatch } from 'react-redux';
 
 
@@ -23,7 +23,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-      dispatch(calculateTotals());
+      dispatch(calculateTotal());
     }, []);
   return (
     <BrowserRouter>

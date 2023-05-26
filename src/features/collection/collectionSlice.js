@@ -24,7 +24,7 @@ export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', as
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ newReview }),
+          body: JSON.stringify(newReview),
         });
         return await response.json(); // parse the response body as JSON
         
@@ -69,7 +69,7 @@ const collectionSlice = createSlice({
         console.log(collectionItem);
         },
 
-        calculateTotals: (state) => {
+        calculateTotal: (state) => {
             let collectionSize = 0;
             state.collectionItems.forEach((item) => {
                 collectionSize += item
@@ -102,6 +102,6 @@ extraReducers: (builder) => {
 
 });
 
-export const { postItem, calculateTotals  } = collectionSlice.actions;
+export const { postItem, calculateTotal  } = collectionSlice.actions;
 
 export default collectionSlice.reducer;

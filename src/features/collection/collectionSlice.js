@@ -33,7 +33,7 @@ export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', as
       }
         })
 
-export const updatePost = createAsyncThunk('collection/updatePost', async(updatedCollectionItem, id) => {
+export const updatePost = createAsyncThunk('collection/updatePost', async(id, updatedCollectionItem) => {
   try {
     let response = await fetch(`${albumApi}/${id}`, {
       method: "PUT",
@@ -80,7 +80,7 @@ const collectionSlice = createSlice({
 
         calculateTotal: (state) => {
             let collectionSize = 0;
-            state.collectionItems.forEach((item) => {
+            state.collectionItems.forEach(() => {
                 collectionSize++
             });
             state.collectionSize = collectionSize;
@@ -97,14 +97,14 @@ extraReducers: (builder) => {
       .addCase(postAlbumReview.fulfilled, (state, action) => {
         console.log(action);
         // post
-        state.collectionItems = action.payload;
+        state.collectionItems.push(action.payload);
       })
       .addCase(updatePost.fulfilled, (state, action) => {
         console.log(action);
-        // post
-        const collectionItem = state.collectionItems.find((item) => item.id === action.payload.id);
+        const collectionItem = state.collectionItems.find((item) => item.id == action.payload.id);
         console.log(collectionItem);
       })
+      
       .addCase(deleteAlbum.fulfilled, (state, action) => {
         console.log(action);
         // Remove the deleted album from the collectionItems array

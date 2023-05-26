@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 import { updatePost } from "../features/collection/collectionSlice";
 
 export default function EditForm(props){
-  const { collectionItem, trackList, handleClose } = props;
-  const { title, artistName, coverArt, releaseDate, myReview, tags, id } = collectionItem;
+  const { collectionItem, handleClose } = props;
+  const { title, artistName, coverArt, releaseDate, myReview, tags, trackList, id } = collectionItem;
   const dispatch = useDispatch();
 
     const [editedAlbumTitle, setEditedAlbumTitle] = useState(`${title}`);
@@ -38,13 +38,13 @@ export default function EditForm(props){
           title: editedAlbumTitle,
           artistName: editedArtist,
           releaseDate: editedReleaseDate,
-          tracklist: editedTrackList.split(","),
+          trackList: editedTrackList.split(","),
           coverArt: editedAlbumArt || "./Assets/default-album-art.png",
           myReview: editedReview,
           tags: editedTags.split(","),
         };
   
-        dispatch(updatePost(updatedCollectionItem, id));
+        dispatch(updatePost(id, updatedCollectionItem));
         handleClose();
 
   
@@ -56,14 +56,14 @@ export default function EditForm(props){
         <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Album Title</Form.Label>
-        <Form.Control type="text" value={editedAlbumTitle}
+        <Form.Control type="text" defaultValue={editedAlbumTitle}
         onChange={(e) => {
           setEditedAlbumTitle(e.target.value);}}
           />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Artist Name</Form.Label>
-        <Form.Control type="text" value={editedArtist}
+        <Form.Control type="text" defaultValue={editedArtist}
         onChange={(e) => {
           setEditedArtist(e.target.value);
         }} 
@@ -72,7 +72,7 @@ export default function EditForm(props){
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Album Art</Form.Label>
-        <Form.Control type="text" value={editedAlbumArt}
+        <Form.Control type="text" defaultValue={editedAlbumArt}
         onChange={(e) => {
           setEditedAlbumArt(e.target.value);
         }}
@@ -84,14 +84,14 @@ export default function EditForm(props){
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Release Date</Form.Label>
-        <Form.Control type="text" value={editedReleaseDate} onChange={(e) => {
+        <Form.Control type="text" defaultValue={editedReleaseDate} onChange={(e) => {
           setEditedReleaseDate(e.target.value);
         }} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Track List</Form.Label>
-        <Form.Control type="text" value={editedTrackList.toString()} onKeyUp={(e)=> {
-          if(e.code === "Comma") {
+        <Form.Control type="text" defaultValue={editedTrackList} onKeyUp={(e)=> {
+          if(e.code === 188) {
             if(e.target.value.length < 3) {
               e.target.value = "";
             }
@@ -107,7 +107,7 @@ export default function EditForm(props){
             }
           }} />
         <Form.Text className="text-muted">
-          Input song titles separated by a comma and space.
+          Input song titles separated by a commas followed by no spaces.
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -116,7 +116,7 @@ export default function EditForm(props){
         label="Review"
         className="mb-3"
         >
-        <Form.Control as="textarea" value={editedReview} onChange={(e)=>{
+        <Form.Control as="textarea" defaultValue={editedReview} onChange={(e)=>{
           if(e.target.value.length > 1000){
             alert('Character Limit: 1000');
             e.target.value = e.target.value.slice(0, 1000);
@@ -130,9 +130,9 @@ export default function EditForm(props){
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>Tags</Form.Label>
-        <Form.Control type="text" value={editedTags.toString()}
+        <Form.Control type="text" defaultValue={editedTags}
         onKeyUp={(e)=> {
-          if(e.code === "Comma") {
+          if(e.code === 188) {
             if(e.target.value.length < 3) {
               e.target.value = "";
             }
@@ -149,7 +149,7 @@ export default function EditForm(props){
             }
           }} />
         <Form.Text className="text-muted">
-          Input tags separated by a comma and space.
+          Input tags separated by a commas followed by no spaces.
         </Form.Text>
       </Form.Group>
       <Button variant="primary" onClick={postToCollection}>

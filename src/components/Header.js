@@ -8,9 +8,9 @@ export default function Header() {
     // })
     // );
     const collectionSize = useSelector((store => store.collection.collectionSize));
-    const joinDate = useSelector((store => store.userdata.joinDate));
-    const firstName = useSelector((store => store.userdata.firstName));
-    const lastName = useSelector((store => store.userdata.lastName));
+    const user = useSelector((store => store.userdata.user));
+    const { firstName, lastName, joinDate } = user;
+    const joinDateConcat = joinDate.slice(5, 7) + "/" + joinDate.slice(8, 10) + "/" + joinDate.slice(0, 4);
 
     return(
         <div className="jumbotron jumbotron-fluid text-center" id="profile-header">
@@ -20,7 +20,7 @@ export default function Header() {
                 <ProfilePhotoLg />
         
         <p className="lead mt-1">{firstName}{' '}{lastName}</p>
-        <p className="fw-light lh-sm">Joined: {joinDate}</p>
+        <p className="fw-light lh-sm">Joined: {joinDateConcat}</p>
         <p className="fw-light lh-sm">Collection Size: {collectionSize}</p>
         </div>
         </div>

@@ -27,7 +27,7 @@ function App() {
 
     useEffect(() => {
       dispatch(getUserData());
-    }, [user]);
+    }, []);
 
     useEffect(() => {
       dispatch(calculateTotal());

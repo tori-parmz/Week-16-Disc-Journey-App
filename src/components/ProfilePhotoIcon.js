@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 
 export default function ProfilePhotoIcon() {
-    const profilePhoto = useSelector((store => store.userdata.profilePhoto));
+    const user = useSelector((store => store.userdata.user));
+    const { profilePhoto } = user;
     return (
         <img src={profilePhoto} height={'50px'} className="profile-photo-icon"/>
     )

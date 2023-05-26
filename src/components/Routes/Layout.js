@@ -18,10 +18,12 @@ const Layout = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const joinDate = useSelector((store => store.userdata.joinDate));
-  const firstName = useSelector((store => store.userdata.firstName));
-  const lastName = useSelector((store => store.userdata.lastName));
+  const user = useSelector((store => store.userdata.user));
+  const { firstName, lastName, joinDate } = user;
   const collectionSize = useSelector((store => store.collection.collectionSize));
+  const joinDateConcat = joinDate.slice(5, 7) + "/" + joinDate.slice(8, 10) + "/" + joinDate.slice(0, 4);
+
+  console.log(joinDateConcat);
  
   return (
     <>
@@ -74,7 +76,7 @@ const Layout = () => {
         <Offcanvas.Body>
           <ProfilePhotoSm id="off-canvas-profile" />
         <p className="lead mt-1">{firstName} {lastName}</p>
-        <p className="fw-light lh-sm">Joined: {joinDate}</p>
+        <p className="fw-light lh-sm">Joined: {joinDateConcat}</p>
         <p className="fw-light lh-sm">Collection Size: {collectionSize}</p>
           <Nav defaultActiveKey="/home" className="flex-column mt-3" id='off-canvas-nav'>
       <Nav.Link as={UpdateProfileOffcanvas} className='text-light'>Update Profile</Nav.Link>

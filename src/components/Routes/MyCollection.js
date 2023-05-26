@@ -4,7 +4,7 @@ import Header from "../Header";
 const MyCollection = () => {
     return (
         <div id="collection-page">
-        <Header />
+        {/* <Header /> */}
         <div className="container">
         <CoverArtGrid />
         </div>

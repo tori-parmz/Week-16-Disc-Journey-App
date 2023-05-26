@@ -2,7 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const userDataApi = 'https://64659acb228bd07b354e1cfd.mockapi.io/mycollection/userdata';
 
-export const getUserData = createAsyncThunk('userdata/getUserData', async (id) => {
+export const getUserData = createAsyncThunk('userdata/getUserData', async () => {
+  try {
+      const response = await fetch(userDataApi);//fetches the one user item
+      console.log(response);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+})
+
+export const getUserDataById = createAsyncThunk('userdata/getUserDataById', async (id) => {
     try {
         const response = await fetch(userDataApi + `/${id}`);//fetches the one user item
         console.log(response);
@@ -29,7 +40,7 @@ export const postNewUser = createAsyncThunk('userdata/postNewUser', async (newUs
     }
       })
 
-      export const updateUser = createAsyncThunk('userdata/updateUser', async(id, updatedUser) => {
+      export const updateUser = createAsyncThunk('userdata/updateUser', async (id, updatedUser) => {
         try {
           let response = await fetch(userDataApi + `/${id}`, {
             method: "PUT",
@@ -47,61 +58,49 @@ export const postNewUser = createAsyncThunk('userdata/postNewUser', async (newUs
 
 const initialState = {
     users: [],
+    user: [],
     loadingUserData: true,
     userId: 0
 }
 
 const userDataSlice = createSlice({
-    name: 'userdata',
-    initialState,
+  name: 'userdata',
+  initialState,
+  reducers: {
+    findUser: (state) => {
+      state.userId = state.users.length;
+      console.log(state.users.length);
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserData.fulfilled, (state, action) => {
+        state.loadingUserData = false;
+        console.log(action);
+        state.user = action.payload;
+        console.log(state.user);
+      })
+      .addCase(getUserDataById.fulfilled, (state, action) => {
+        state.loadingUserData = false;
+        console.log(action);
+        state.users = action.payload;
+        console.log(state.users);
+      })
+      .addCase(postNewUser.fulfilled, (state, action) => {
+        console.log(action);
+        // post
+        state.users.push(action.payload);
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        const { id, updatedUser } = action.payload;
+        const index = state.users.findIndex((item) => item.id === id);
+        if (index !== -1) {
+          state.users[index] = updatedUser;
+        }
+      });
+  }
+});     
 
-    reducers: {
-      findUser: (state) => {
-        let userId = 0;
-        state.users.forEach(() => {
-            userId++
-        });
-        state.userId = userId;
-        
-      },
-        
-    },
-
-    extraReducers: (builder) => {
-        builder
-          .addCase(getUserData.fulfilled, (state, action) => {
-            state.loadingUserData = false;
-            console.log(action);
-            state.users = action.payload;
-            console.log(state.users);
-          })
-
-          .addCase(getUserData.pending, (state) => {
-            state.loadingUserData = true
-          })
-
-          .addCase(getUserData.rejected, (state) => {
-            state.loadingUserData = false
-          })
-
-          .addCase(postNewUser.fulfilled, (state, action) => {
-            console.log(action);
-            // post
-            state.users.push(action.payload);
-          })
-
-          .addCase(updateUser.fulfilled, (state, action) => {
-            const { id, updatedUser } = action.payload;
-            const index = state.users.findIndex((item) => item.id === action.payload.id);
-    
-          if (index !== id) {
-            state.users[index] = updatedUser;
-            }
-          });
-}
-
-    
-})
 
 export const { findUser  } = userDataSlice.actions;
 

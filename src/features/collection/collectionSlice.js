@@ -33,7 +33,7 @@ export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', as
       }
         })
 
-export const updatePost = createAsyncThunk('collection/updatePost', async(id, updatedCollectionItem) => {
+export const updatePost = createAsyncThunk('collection/updatePost', async (id, updatedCollectionItem) => {
   try {
     let response = await fetch(albumApi + `/${id}`, {
       method: "PUT",

@@ -66,6 +66,7 @@ export default function AlbumReview(props) {
             <EditForm 
             collectionItem={collectionItem}
             trackList={trackList}
+            handleClose={handleClose}
             />
           </Modal.Body>
         </Modal>

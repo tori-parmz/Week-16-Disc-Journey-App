@@ -111,7 +111,7 @@ export default function EntryForm() {
           }}
         />
         <Form.Text className="text-muted">
-          Input song titles separated by commas with no spaces.
+          Input song titles separated by a comma and space.
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -153,7 +153,7 @@ export default function EntryForm() {
           }}
         />
         <Form.Text className="text-muted">
-          Input tags separated by commas with no spaces.
+          Input tags separated by a comma and space.
         </Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit" onClick={postToCollection}>

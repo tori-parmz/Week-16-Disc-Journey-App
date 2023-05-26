@@ -2,16 +2,19 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updatePost } from "../features/collection/collectionSlice";
 
 export default function EditForm(props){
-  const { collectionItem, trackList } = props;
+  const { collectionItem, trackList, handleClose } = props;
   const { title, artistName, coverArt, releaseDate, myReview, tags, id } = collectionItem;
+  const dispatch = useDispatch();
+
     const [editedAlbumTitle, setEditedAlbumTitle] = useState(`${title}`);
-    const [editdArtist, setEditedArtist] = useState(`${artistName}`);
+    const [editedArtist, setEditedArtist] = useState(`${artistName}`);
     const [editedAlbumArt, setEditedAlbumArt] = useState(`${coverArt}`);
-    const [editedTrackList, setEditedTrackList] = useState(trackList);
-    const [editedTags, setEditedTags] = useState(tags);
+    const [editedTrackList, setEditedTrackList] = useState(`${trackList}`);
+    const [editedTags, setEditedTags] = useState(`${tags}`);
     const [editedReview, setEditedReview] = useState(`${myReview}`);
     const [editedReleaseDate, setEditedReleaseDate] = useState(`${releaseDate}`);
 
@@ -19,39 +22,35 @@ export default function EditForm(props){
     console.log(tags);
 
 
-    // const postToCollection = (e) => {
-    //   e.preventDefault();
+    const postToCollection = (e) => {
+      e.preventDefault();
   
-    //   if (albumTitle === "") {
-    //     alert("Album Title Required");
-    //   } else if (artist === "") {
-    //     alert("Artist Name Required");
-    //   } else if (releaseDate === "") {
-    //     alert("Release Date Required");
-    //   } else if (newReview === "") {
-    //     alert("Album Review Required");
-    //   } else {
-    //     const newCollectionItem = {
-    //       title: albumTitle,
-    //       artistName: artist,
-    //       releaseDate: releaseDate,
-    //       tracklist: trackList.split(","),
-    //       coverArt: albumArt || "./Assets/default-album-art.png",
-    //       myReview: newReview,
-    //       tags: tags.split(","),
-    //     };
+      if (editedAlbumTitle === "") {
+        alert("Album Title Required");
+      } else if (editedArtist === "") {
+        alert("Artist Name Required");
+      } else if (releaseDate === "") {
+        alert("Release Date Required");
+      } else if (editedReview === "") {
+        alert("Album Review Required");
+      } else {
+        const updatedCollectionItem = {
+          title: editedAlbumTitle,
+          artistName: editedArtist,
+          releaseDate: editedReleaseDate,
+          tracklist: editedTrackList.split(","),
+          coverArt: editedAlbumArt || "./Assets/default-album-art.png",
+          myReview: editedReview,
+          tags: editedTags.split(","),
+        };
   
-    //     dispatch(postAlbumReview(newCollectionItem));
+        dispatch(updatePost(updatedCollectionItem, id));
+        handleClose();
+
   
-    //     setAlbumTitle("");
-    //     setAlbumArt("");
-    //     setArtist("");
-    //     setReleaseDate("");
-    //     setTags([]);
-    //     setNewReview("");
-    //     setTrackList([]);
-    //   }
-    // };
+        
+      }
+    };
 
     return (
         <Form>
@@ -64,7 +63,7 @@ export default function EditForm(props){
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Artist Name</Form.Label>
-        <Form.Control type="text" value={editdArtist}
+        <Form.Control type="text" value={editedArtist}
         onChange={(e) => {
           setEditedArtist(e.target.value);
         }} 
@@ -91,7 +90,7 @@ export default function EditForm(props){
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Track List</Form.Label>
-        <Form.Control type="text" value={editedTrackList} onKeyUp={(e)=> {
+        <Form.Control type="text" value={editedTrackList.toString()} onKeyUp={(e)=> {
           if(e.code === "Comma") {
             if(e.target.value.length < 3) {
               e.target.value = "";
@@ -100,11 +99,15 @@ export default function EditForm(props){
           }
           
         }} onChange={(e)=> {
-          var newTrackList = e.target.value;
-          setEditedTrackList(newTrackList)
-        }} />
+          const newTrackList = e.target.value.trim();
+            if (newTrackList.length === 0) {
+              setEditedTrackList([]);
+            } else {
+              setEditedTrackList(newTrackList);
+            }
+          }} />
         <Form.Text className="text-muted">
-          Input song titles separated by commas with no spaces.
+          Input song titles separated by a comma and space.
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -118,7 +121,8 @@ export default function EditForm(props){
             alert('Character Limit: 1000');
             e.target.value = e.target.value.slice(0, 1000);
           } else {
-            setEditedReview(e.target.value);  
+            setEditedReview(e.target.value);
+            console.log(editedReview);  
           }
 
         }}/>
@@ -126,7 +130,7 @@ export default function EditForm(props){
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>Tags</Form.Label>
-        <Form.Control type="text" value={editedTags}
+        <Form.Control type="text" value={editedTags.toString()}
         onKeyUp={(e)=> {
           if(e.code === "Comma") {
             if(e.target.value.length < 3) {
@@ -137,14 +141,18 @@ export default function EditForm(props){
           
         }} 
         onChange={(e)=> {
-          var newTagList = e.target.value;
-          setEditedTags(newTagList)
-        }} />
+          const newTagList = e.target.value.trim();
+            if (newTagList.length === 0) {
+              setEditedTags([]);
+            } else {
+              setEditedTags(newTagList);
+            }
+          }} />
         <Form.Text className="text-muted">
-          Input tags separated by commas with no spaces.
+          Input tags separated by a comma and space.
         </Form.Text>
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" onClick={postToCollection}>
         Submit
       </Button>
     </Form>

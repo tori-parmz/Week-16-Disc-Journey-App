@@ -4,7 +4,7 @@ const userDataApi = 'https://64659acb228bd07b354e1cfd.mockapi.io/mycollection/us
 
 export const getUserData = createAsyncThunk('userdata/getUserData', async () => {
     try {
-        const response = await fetch(userDataApi);
+        const response = await fetch(userDataApi`/1`);
         console.log(response);
         const data = await response.json();
         return data;
@@ -14,10 +14,11 @@ export const getUserData = createAsyncThunk('userdata/getUserData', async () => 
 })
 
 const initialState = {
-    firstName: 'Tori',
-    lastName: 'Parham',
-    profilePhoto: 'https://i.ibb.co/3MMGzrc/tori-headshot-smaller.png',
-    joinDate: 'May 23, 2023',
+    user: [],
+    firstName: '',
+    lastName: '',
+    profilePhoto: './Assets/default-profile-photo.png',
+    joinDate: '',
 }
 
 const userDataSlice = createSlice({
@@ -25,17 +26,25 @@ const userDataSlice = createSlice({
     initialState,
 
     reducers: {
-        extraReducers: (builder) => {
-            builder
-              .addCase(getUserData.fulfilled, (state, action) => {
-                console.log(action);
-                state.collectionItems = action.payload;
-              })
-    }
+        
+    },
 
-    }
+    extraReducers: (builder) => {
+        builder
+          .addCase(getUserData.fulfilled, (state, action) => {
+            console.log(action);
+            state.user = action.payload;
+            console.log(state.user)
+            state.firstName = state.user.firstName;
+            state.lastName = state.user.lastName;
+            state.profilePhoto = state.user.profilePhoto;
+            state.joinDate = state.user.joinDate.slice(5, 6) + "/" + state.user.joinDate.slice(9, 10) + "/" + state.user.joinDate.slice(0, 3);
+          })
+}
 
     
 })
+
+export const { fillUserData } = userDataSlice.actions;
 
 export default userDataSlice.reducer;

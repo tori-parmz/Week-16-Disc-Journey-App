@@ -11,6 +11,10 @@ export default function UpdateProfileForm() {
     radioValue = e.target.checked;
     console.log(radioValue);
   };
+
+  //function for onClick: if radioValue === false: update state
+  //if radioValue === true, create new user object, delete data & post user object 
+  //default profile photo
     return (
       <div>
 

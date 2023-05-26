@@ -12,10 +12,13 @@ import NewEntry from './components/Routes/NewEntry';
 import AboutPage from './components/Routes/AboutPage';
 import { useEffect } from 'react';
 import { getCollectionItems, calculateTotal } from './features/collection/collectionSlice';
-import { useDispatch } from 'react-redux';
+import { getUserData } from './features/userdata/userDataSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function App() {
+  const { collectionItems } = useSelector((store) => store.collection);
+  const {user} = useSelector((store) => store.userdata);
   const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,8 +26,12 @@ function App() {
     }, []);
 
     useEffect(() => {
+      dispatch(getUserData());
+    }, [user]);
+
+    useEffect(() => {
       dispatch(calculateTotal());
-    }, []);
+    }, [collectionItems]);
   return (
     <BrowserRouter>
       <Routes>

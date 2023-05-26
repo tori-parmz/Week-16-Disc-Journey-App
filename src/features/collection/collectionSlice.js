@@ -121,6 +121,6 @@ extraReducers: (builder) => {
 
 });
 
-export const { postItem, calculateTotal  } = collectionSlice.actions;
+export const { calculateTotal  } = collectionSlice.actions;
 
 export default collectionSlice.reducer;

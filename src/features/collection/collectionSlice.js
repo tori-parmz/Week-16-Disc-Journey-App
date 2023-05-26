@@ -33,21 +33,27 @@ export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', as
       }
         })
 
-export const updatePost = createAsyncThunk('collection/updatePost', async ({id, updatedCollectionItem}) => {
-  try {
-    let response = await fetch(albumApi + `/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedCollectionItem),
-    });
-    // return await response.json();
-    return await response.json();
-  } catch (error) {
-    console.log(error);
-  }
-})
+        export const updatePost = createAsyncThunk(
+          'collection/updatePost',
+          async ({ id, updatedCollectionItem }) => {
+            try {
+              const response = await fetch(albumApi + `/${id}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedCollectionItem),
+              });
+              
+              const data = await response.json();
+              return { id, updatedPost: data };
+            } catch (error) {
+              console.log(error);
+              throw error;
+            }
+          }
+        );
+        
    
   
 
@@ -105,13 +111,17 @@ extraReducers: (builder) => {
         console.log(action);
         // post
         state.collectionItems.push(action.payload);
+      })
       
-      const updatedData = action.payload;
-        const index = state.findIndex((item) => item.id === updatedData.id);
+      .addCase(updatePost.fulfilled, (state, action) => {
+        console.log(action);
+        const { id, updatedPost } = action.payload;
+        const index = state.collectionItems.findIndex((item) => item.id === id);
         if (index !== -1) {
-          state[index] = updatedData;
+          state.collectionItems[index] = updatedPost;
         }
-        })
+      })
+      
       
       
       .addCase(deleteAlbum.fulfilled, (state, action) => {

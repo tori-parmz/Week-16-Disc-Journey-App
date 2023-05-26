@@ -1,7 +1,7 @@
 
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AlbumInfo from './components/Routes/AlbumInfo';
+import AlbumInfo from './hidden/Routes/AlbumInfo';
 import LoginPage from './components/Routes/LoginPage';
 import MyCollection from './components/Routes/MyCollection';
 import MyJourney from './components/Routes/MyJourney';

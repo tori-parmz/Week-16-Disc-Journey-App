@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "../features/userdata/userDataSlice";
 
+
 export default function UpdateProfileForm(props) {
   const { handleClose } = props;
   const [newFirstName, setNewFirstName] = useState('');

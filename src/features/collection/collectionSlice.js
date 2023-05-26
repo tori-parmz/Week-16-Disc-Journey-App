@@ -70,6 +70,7 @@ export const deleteAlbum = createAsyncThunk('collection/deleteAlbum', async (id)
 const initialState = {
     collectionItems: [],
     collectionSize: 0,
+    loadingCollection: true,
 
 }
 
@@ -95,6 +96,11 @@ extraReducers: (builder) => {
         console.log(action);
         state.collectionItems = action.payload;
       })
+
+      .addCase(getCollectionItems.pending, (state) => {
+        state.loadingCollection = true
+      })
+
       .addCase(postAlbumReview.fulfilled, (state, action) => {
         console.log(action);
         // post
@@ -115,6 +121,8 @@ extraReducers: (builder) => {
         state.collectionItems = state.collectionItems.filter(
           (item) => item.id !== action.payload.id
         );
+
+      
       });
   },
 

@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Outlet } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -15,22 +15,33 @@ import { useSelector } from 'react-redux';
 
 const Layout = () => {
   const [show, setShow] = useState(false);
+  const [formattedJoinDate, setFormattedJoinDate] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const user = useSelector((store => store.userdata.user));
+  const { user } = useSelector((store => store.userdata));
   const { firstName, lastName, joinDate } = user;
   const collectionSize = useSelector((store => store.collection.collectionSize));
   const joinDateConcat = async (joinDate) => {
-    try {
-      const formattedDate = joinDate.slice(5, 7) + "/" + joinDate.slice(8, 10) + "/" + joinDate.slice(0, 4);
-      return formattedDate;
-    } catch (error) {
-      console.log(error);
-    }
+      try {
+        const formattedDate = joinDate.slice(5, 7) + "/" + joinDate.slice(8, 10) + "/" + joinDate.slice(0, 4);
+        return formattedDate;
+      } catch (error) {
+        console.log(error);
+      }
   };
   
-  const formattedJoinDate = joinDateConcat(joinDate);
+  useEffect(() => {
+        const fetchFormattedJoinDate = async () => {
+          const formattedDate = await joinDateConcat(joinDate);
+          setFormattedJoinDate(formattedDate);
+        };
+      
+        fetchFormattedJoinDate();
+      }, [joinDate]);
+
+      console.log(formattedJoinDate);
+  
  
   return (
     <>

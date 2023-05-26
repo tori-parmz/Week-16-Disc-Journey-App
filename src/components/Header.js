@@ -1,5 +1,6 @@
 import ProfilePhotoLg from "./ProfilePhotoLg";
 import { useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
 
 
 
@@ -10,6 +11,7 @@ export default function Header() {
     const collectionSize = useSelector((store => store.collection.collectionSize));
     const user = useSelector((store => store.userdata.user));
     const { firstName, lastName, joinDate } = user;
+    const [formattedJoinDate, setFormattedJoinDate] = useState(null);
     const joinDateConcat = async (joinDate) => {
         try {
           const formattedDate = joinDate.slice(5, 7) + "/" + joinDate.slice(8, 10) + "/" + joinDate.slice(0, 4);
@@ -19,7 +21,15 @@ export default function Header() {
         }
       };
 
-      const formattedJoinDate = joinDateConcat(joinDate);
+      useEffect(() => {
+        const fetchFormattedJoinDate = async () => {
+          const formattedDate = await joinDateConcat(joinDate);
+          setFormattedJoinDate(formattedDate);
+        };
+      
+        fetchFormattedJoinDate();
+      }, [joinDate]);
+
 
 
     return(

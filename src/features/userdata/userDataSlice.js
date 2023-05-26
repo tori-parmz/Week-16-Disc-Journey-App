@@ -15,6 +15,7 @@ export const getUserData = createAsyncThunk('userdata/getUserData', async () => 
 
 const initialState = {
     user: [],
+    loadingUserData: true,
 }
 
 const userDataSlice = createSlice({
@@ -28,10 +29,18 @@ const userDataSlice = createSlice({
     extraReducers: (builder) => {
         builder
           .addCase(getUserData.fulfilled, (state, action) => {
+            state.loadingUserData = false;
             console.log(action);
             state.user = action.payload;
-            console.log(state.user)
-            // state.joinDate = state.user.joinDate.slice(5, 6) + "/" + state.user.joinDate.slice(9, 10) + "/" + state.user.joinDate.slice(0, 3);
+            console.log(state.user);
+          })
+
+          .addCase(getUserData.pending, (state) => {
+            state.loadingUserData = true
+          })
+
+          .addCase(getUserData.rejected, (state) => {
+            state.loadingUserData = false
           })
 }
 

@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateProfile } from "../features/userdata/userDataSlice";
+import { updateProfile, createNewUser } from "../features/userdata/userDataSlice";
 
 
 export default function UpdateProfileForm(props) {
@@ -26,13 +26,16 @@ export default function UpdateProfileForm(props) {
 
       e.preventDefault();
 
+      const newDate = new Date();
+
       const newUserData = {
         firstName: newFirstName,
         lastName: newLastName,
         profilePhoto: newProfile || "./Assets/default-profile-photo.png",
+        joinDate: newDate.toDateString()
 
       }
-      dispatch(updateProfile(newUserData));
+      dispatch(createNewUser(newUserData));
       handleClose();
 
     } else {

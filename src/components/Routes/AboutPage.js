@@ -35,7 +35,7 @@ const AboutPage = () => {
                 <div className="container">
                   <div className="row my-3">
                     <div className="col mt-1 mx-0 px-0">
-                    <a href="https://www.linkedin.com/in/tori-parham/">
+                    <a href="https://www.linkedin.com/in/tori-parham/" target="_blank">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="30"
@@ -49,7 +49,7 @@ const AboutPage = () => {
                       </a>
                     </div>
                     <div className="col mt-1 mx-0 px-0">
-                    <a href="https://github.com/tori-parmz">
+                    <a href="https://github.com/tori-parmz" target="_blank">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="30"

@@ -6,8 +6,9 @@ const initialState = {
       firstName: "First",
       lastName: "Last",
       profilePhoto: "./Assets/default-profile-photo.png",
+      joinDate: "May 26, 2023"
     },
-    joinDate: "May 26, 2023"
+    
 }
 
 const userDataSlice = createSlice({
@@ -16,6 +17,13 @@ const userDataSlice = createSlice({
   reducers: {
 
     updateProfile: (state, action) => {
+      state.user.firstName = action.payload.firstName;
+      state.user.lastName = action.payload.lastName;
+      state.user.profilePhoto = action.payload.profilePhoto;
+      
+  },
+
+    createNewUser: (state, action) => {
       state.user = action.payload;
   },
 
@@ -24,6 +32,6 @@ const userDataSlice = createSlice({
 });     
 
 
-export const { updateProfile  } = userDataSlice.actions;
+export const { updateProfile, createNewUser  } = userDataSlice.actions;
 
 export default userDataSlice.reducer;

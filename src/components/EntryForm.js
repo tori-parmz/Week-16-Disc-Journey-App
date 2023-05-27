@@ -27,6 +27,7 @@ export default function EntryForm() {
     } else if (newReview === "") {
       alert("Album Review Required");
     } else {
+      const newDate = new Date();
       const newCollectionItem = {
         title: albumTitle,
         artistName: artist,
@@ -34,7 +35,8 @@ export default function EntryForm() {
         // trackList: trackList.split(" ,"),
         coverArt: albumArt || "./Assets/default-album-art.png",
         myReview: newReview,
-        tags: tags.split(" ,"),
+        tags: tags.split(","),
+        postDate: newDate.toDateString()
       };
 
       dispatch(postAlbumReview(newCollectionItem));
@@ -51,25 +53,27 @@ export default function EntryForm() {
 
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="albumTitle">
         <Form.Label>Album Title</Form.Label>
         <Form.Control
           type="text"
           placeholder="Album Title"
           value={albumTitle}
           onChange={(e) => setAlbumTitle(e.target.value)}
+          required
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="artistName">
         <Form.Label>Artist Name</Form.Label>
         <Form.Control
           type="text"
           placeholder="Artist Name"
           value={artist}
           onChange={(e) => setArtist(e.target.value)}
+          required
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="albumArt">
         <Form.Label>Album Art</Form.Label>
         <Form.Control
           type="text"
@@ -79,13 +83,14 @@ export default function EntryForm() {
         />
         <Form.Text className="text-muted">Input the image URL</Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="releaseDate">
         <Form.Label>Release Date</Form.Label>
         <Form.Control
           type="text"
           placeholder="Ex: 2023"
           value={releaseDate}
           onChange={(e) => setReleaseDate(e.target.value)}
+          required
         />
       </Form.Group>
       {/* <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -107,7 +112,7 @@ export default function EntryForm() {
           Input song titles separated by a comma and space.
         </Form.Text>
       </Form.Group> */}
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="reviewInput">
         <FloatingLabel controlId="floatingTextarea" label="Review" className="mb-3">
           <Form.Control
             as="textarea"
@@ -118,12 +123,13 @@ export default function EntryForm() {
                 e.target.value = e.target.value.slice(0, 1000);
               } else {
                 setNewReview(e.target.value);
+                
               }
             }}
           />
         </FloatingLabel>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="tags">
         <Form.Label>Tags</Form.Label>
         <Form.Control
           type="text"
@@ -134,12 +140,13 @@ export default function EntryForm() {
             if (newTagList.length === 0) {
               setTags([]);
             } else {
+              
               setTags(newTagList);
             }
           }}
         />
         <Form.Text className="text-muted">
-          Input tags separated by a comma and space.
+          Input tags separated by commas followed by no spaces.
         </Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit" onClick={postToCollection}>

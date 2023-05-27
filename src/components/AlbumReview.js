@@ -18,7 +18,7 @@ export default function AlbumReview(props) {
   const firstName = useSelector((store) => store.userdata.firstName);
   const dispatch = useDispatch();
   const { collectionItem } = props;
-  const { title, artistName, coverArt, releaseDate, myReview, tags, id } = collectionItem;
+  const { title, artistName, coverArt, releaseDate, myReview, tags, id, postDate } = collectionItem;
 
   const [show, setShow] = useState(false);
 
@@ -75,7 +75,7 @@ export default function AlbumReview(props) {
           sx={{ width: 'auto' }}
           avatar={<ProfilePhotoIcon />}
           title={firstName}
-          subheader={new Date().toLocaleString()}
+          subheader={postDate}
         />
         <Box sx={{ display: 'flex' }}>
           <Stack

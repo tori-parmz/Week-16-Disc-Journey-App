@@ -9,8 +9,8 @@ export default function Header() {
     // })
     // );
     const collectionSize = useSelector((store => store.collection.collectionSize));
-    const { user, joinDate } = useSelector((store => store.userdata));
-    const { firstName, lastName } = user;
+    const { user } = useSelector((store => store.userdata));
+    const { firstName, lastName, joinDate } = user;
 
 
 

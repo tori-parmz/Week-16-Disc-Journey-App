@@ -64,7 +64,7 @@ export default function EditForm(props){
           setEditedAlbumTitle(e.target.value);
           console.log(editedAlbumTitle);
         }}
-          />
+          required/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Artist Name</Form.Label>

@@ -14,7 +14,7 @@ export const getCollectionItems = createAsyncThunk('collection/getCollectionItem
         return data;
       } catch (error) {
         console.log(error);
-      }
+      }       
 })
 
 export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', async (newReview) => {
@@ -35,18 +35,21 @@ export const postAlbumReview = createAsyncThunk('collection/postAlbumReview', as
 
         export const updatePost = createAsyncThunk(
           'collection/updatePost',
-          async ({ id, updatedCollectionItem }) => {
+          async (updatedObject) => {
+            
+            
             try {
-              const response = await fetch(albumApi + `/${id}`, {
+              const response = await fetch(albumApi + `/${updatedObject.id}`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedCollectionItem),
+                body: JSON.stringify(updatedObject.updatedCollectionItem),
               });
               
               const data = await response.json();
-              return { id, updatedPost: data };
+
+              return { id: updatedObject.id, updatedPost: data };
             } catch (error) {
               console.log(error);
               throw error;

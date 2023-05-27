@@ -18,14 +18,14 @@ export default function EditForm(props){
     const [editedReview, setEditedReview] = useState(myReview);
     const [editedReleaseDate, setEditedReleaseDate] = useState(releaseDate);
 
-    console.log(trackList);
-    console.log(tags);
+    // console.log(trackList);
+    // console.log(tags);
 
 
     const updateCollectionItem = (e) => {
       e.preventDefault();
   
-      if (editedAlbumTitle === "") {
+      if (editedAlbumTitle === "") { //find out more about required tag
         alert("Album Title Required");
       } else if (editedArtist === "") {
         alert("Artist Name Required");
@@ -44,8 +44,10 @@ export default function EditForm(props){
           tags: editedTags.split(","),
           id: id,
         };
+
+        // console.log(updatedCollectionItem);
   
-        dispatch(updatePost({id, newData: {updatedCollectionItem}}));
+        dispatch(updatePost({id, updatedCollectionItem}));
         handleClose();
 
   

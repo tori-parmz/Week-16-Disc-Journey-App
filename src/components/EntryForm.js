@@ -3,8 +3,6 @@ import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { postAlbumReview } from "../features/collection/collectionSlice";
 
-// import './Assets/defalut-album-art.png'
-
 export default function EntryForm() {
   const [albumTitle, setAlbumTitle] = useState("");
   const [artist, setArtist] = useState("");
@@ -27,7 +25,7 @@ export default function EntryForm() {
     } else if (newReview === "") {
       alert("Album Review Required");
     } else {
-      const newDate = new Date();
+      const newDate = new Date(); //creates a date for the post
       const newCollectionItem = {
         title: albumTitle,
         artistName: artist,
@@ -35,8 +33,8 @@ export default function EntryForm() {
         // trackList: trackList.split(" ,"),
         coverArt: albumArt || "./Assets/default-album-art.png",
         myReview: newReview,
-        tags: tags.split(","),
-        postDate: newDate.toDateString()
+        tags: tags.split(","), //splits up the tag string into an array
+        postDate: newDate.toDateString() //turns that date into formatted date string
       };
 
       dispatch(postAlbumReview(newCollectionItem));
@@ -119,8 +117,9 @@ export default function EntryForm() {
             value={newReview}
             onChange={(e) => {
               if (e.target.value.length > 1000) {
+                // character limit is 1000 characters
                 alert("Character Limit: 1000");
-                e.target.value = e.target.value.slice(0, 1000);
+                e.target.value = e.target.value.slice(0, 1000); //deletes anything over 1000
               } else {
                 setNewReview(e.target.value);
                 
@@ -138,7 +137,7 @@ export default function EntryForm() {
           onChange={(e) => {
             const newTagList = e.target.value;
             if (newTagList.length === 0) {
-              setTags([]);
+              setTags([]); //if empty, will set to an empty array
             } else {
               
               setTags(newTagList);

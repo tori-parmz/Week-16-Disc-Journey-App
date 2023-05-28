@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { Nav } from 'react-bootstrap';
-import UpdateProfileForm from './UpdateProfileForm';
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import { Nav } from "react-bootstrap";
+import UpdateProfileForm from "./UpdateProfileForm";
 
 export default function UpdateProfileOffcanvas() {
   const [show, setShow] = useState(false);
@@ -12,7 +11,8 @@ export default function UpdateProfileOffcanvas() {
 
   return (
     <>
-      <Nav.Link className='text-light' onClick={handleShow}>
+      {/* makes the button to open the modal a Nav link item for the off canvas menu */}
+      <Nav.Link className="text-light" onClick={handleShow}>
         Update Profile
       </Nav.Link>
 
@@ -21,12 +21,9 @@ export default function UpdateProfileOffcanvas() {
           <Modal.Title>Update Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <UpdateProfileForm
-        handleClose={handleClose}
-        />
-
+          <UpdateProfileForm handleClose={handleClose} />
         </Modal.Body>
       </Modal>
     </>
   );
-};
+}

@@ -16,7 +16,8 @@ import EditForm from "./EditForm";
 
 export default function AlbumReview(props) {
   //get firstName from userDataSlice
-  const firstName = useSelector((store) => store.userdata.firstName);
+  const user = useSelector((store) => store.userdata.user);
+  const { firstName } = user;
   const dispatch = useDispatch();
 
   //receives the collectionItem as a prop, then destructures it

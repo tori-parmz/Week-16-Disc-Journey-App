@@ -17,7 +17,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const { collectionItems } = useSelector((store) => store.collection); //gets the collectionItems array to calculat collectionSize
+  const { collectionItems } = useSelector((store) => store.collection); //gets the collectionItems array to calculate collectionSize
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function App() {
           <Route index element={<MyCollection />} />
           <Route path="myjourney" element={<MyJourney />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="albuminfo" element={<AlbumInfo />} />
+          {/* <Route path="albuminfo" element={<AlbumInfo />} /> */}
           <Route path="newentry" element={<NewEntry />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="*" element={<NoPage />} />

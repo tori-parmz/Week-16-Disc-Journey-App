@@ -1,5 +1,6 @@
 # :cd: The DiscJourney App :cd:
 ### Promineo Tech Front End Software Development Bootcamp Final Project
+### [Demo Here](https://main.d1e8p8piktoztz.amplifyapp.com/)
 
 
 ## :star: Description
@@ -65,7 +66,7 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ## :star: Technologies
-This app was created using React. This is a single-page application which uses React Router to allow for navigation to each route. The app also makes use of Redux Toolkit for global state management. Bootstrap, React-Bootstrap, and Material UI were used as syling libraries. This app was deployed using AWS Amplify.
+This app was created using React and uses a mock API on [mockapi.io](https://mockapi.io) to handle HTTP requests. This is a single-page application which uses [React Router](https://reactrouter.com) to allow for navigation to each route. The app also makes use of [Redux Toolkit](https://redux-toolkit.js.org/) for global state management. [Bootstrap](https://getbootstrap.com/), [React-Bootstrap](https://react-bootstrap.github.io/), and [Material UI](https://mui.com/material-ui/) were used as syling libraries. The demo of this app was deployed using [AWS Amplify](https://aws.amazon.com/amplify/).
 
 
 

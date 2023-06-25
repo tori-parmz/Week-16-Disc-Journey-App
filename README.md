@@ -1,6 +1,6 @@
 # :cd: The DiscJourney App :cd:
 ### Promineo Tech Front End Software Development Bootcamp Final Project
-### :computer: [Demo Here](https://main.d1e8p8piktoztz.amplifyapp.com/)
+### :computer: [Demo Site](https://main.d1e8p8piktoztz.amplifyapp.com/)
 ### :movie_camera: [Demo Video](https://youtu.be/d_MiK2NG7GQ)
 
 

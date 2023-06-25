@@ -1,12 +1,62 @@
-# Getting Started with Create React App
+# The DiscJourney App
+### Promineo Tech Front End Software Development Bootcamp Final Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+##### The Disc Journey app allows users to post reviews of their favorite music albums.
+
+The user inputs the album metadata as well as their review on the "New Entry" page. Once the review is posted, it will appear in two places:
+
+1. The **My Collection** page displays a grid of all of each album cover, along with its title, artist name, and release year.
+2. The **My Journey** page displays each review with all of the album metadata and tags.
+
+On the **My Journey** page, the user has options to edit and/or delete each posted review.
+
+####### User Login:
+
+In this iteration, the user can update the user information by clicking the **Account** dropdown in the navigation bar and navigating to **Update Profile**. Here, the user can enter their first and last name, as well as a url for a profile photo. The user can also indicate that they are a New User, which will update their join date. All of these user data items are displayed on the **My Collection** and **My Journey** pages.
+
+##### This app was created with React as a final project for the Front End Software Developer bootcamp program at [Promineo Tech](https://promineotech.com/). This assignment had the following requirements:
+
+* Utilizes an API or an array for in-memory storage
+* Uses React Router and has at least 3 pages
+* Styled using React Bootstrap or an alternative styling library
+* Contain at least 10 components
+* Allow for all CRUD operations
+
+## Features
+
+##### Collection
+* The **My Collection** page displays a grid which lists each album's art, title, artist name, and release year
+* The collection size is displayed which shows the number of albums in the collection. This number is kept up-to-date with each addition or subtraction of reviewed albums.
+
+##### My Journey Page
+* Each review is displayed on a card which contains the album art, title, artist name, release year, and tags for the genre.
+* Each card has a **DELETE** button which allows for the review to be deleted.
+* Once clicked, the **EDIT** button will open the Edit modal.
+
+##### Offcanvas Menu
+* Show/Hide of offcanvas menus is handled by a hamburger menu button in the upper left corner.
+* Menu displays user data and collection size as well as navigation.
+
+##### Update Profile Modal
+* Show/hide is handled by the **Update Profile** option in the navigation bar and the offcanvas menu.
+* A toggle allows the user to indicate whether this is a new user or not.
+
+##### Edit Modal
+* Show/Hide is handled by the **EDIT** button on each of the reviews displayed on the **My Journey** page.
+* The modal displays a form which fills in the inputs with the current state of the review object.
+
+## How to Use
+
+### Demo
+
+Access a demo of this app [here](https://main.d1e8p8piktoztz.amplifyapp.com/).
 
 ### `npm start`
+
+If running on your local host, run `npm start`.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,57 +64,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+## Technologies
+This app was created using React. This is a single-page application which uses React Router to allow for navigation to each route. The app also makes use of Redux Toolkit for global state management. Bootstrap, React-Bootstrap, and Material UI were used as syling libraries. This app was deployed using AWS Amplify.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

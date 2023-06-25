@@ -4,7 +4,7 @@
 ### :movie_camera: [Demo Video](https://youtu.be/d_MiK2NG7GQ)
 
 
-## :star: Description
+## :notebook: Description
 
 ##### The Disc Journey app allows users to post reviews of their favorite music albums.
 
@@ -50,7 +50,7 @@ In this iteration, the user can update the user information by clicking the **Ac
 * Show/Hide is handled by the **EDIT** button on each of the reviews displayed on the **My Journey** page.
 * The modal displays a form which fills in the inputs with the current state of the review object.
 
-## :star: How to Use
+## :rocket: How to Use
 
 ### Demo
 
@@ -66,8 +66,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-## :star: Technologies
+## :jigsaw: Technologies
 This app was created using React and uses a mock API on [mockapi.io](https://mockapi.io) to handle HTTP requests. This is a single-page application which uses [React Router](https://reactrouter.com) to allow for navigation to each route. The app also makes use of [Redux Toolkit](https://redux-toolkit.js.org/) for global state management. [Bootstrap](https://getbootstrap.com/), [React-Bootstrap](https://react-bootstrap.github.io/), and [Material UI](https://mui.com/material-ui/) were used as syling libraries. The demo of this app was deployed using [AWS Amplify](https://aws.amazon.com/amplify/).
-
-
-

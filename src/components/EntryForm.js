@@ -48,7 +48,7 @@ export default function EntryForm() {
       setAlbumArt("");
       setArtist("");
       setReleaseDate("");
-      setTags([]);
+      setTags("");
       setNewReview("");
       // setTrackList([]);
     }

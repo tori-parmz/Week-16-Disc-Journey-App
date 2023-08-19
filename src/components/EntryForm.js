@@ -9,7 +9,7 @@ export default function EntryForm() {
   const [albumArt, setAlbumArt] = useState("");
   // const [trackList, setTrackList] = useState([]);
   const [releaseDate, setReleaseDate] = useState("");
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState("");
   const [newReview, setNewReview] = useState("");
   const dispatch = useDispatch();
 
@@ -26,6 +26,11 @@ export default function EntryForm() {
       alert("Album Review Required");
     } else {
       const newDate = new Date(); //creates a date for the post
+      let filledTags = []; // Initialize an empty array
+
+    if (tags.trim() !== "") { // Check if tags input is not empty after trimming
+      filledTags = tags.split(",").map(tag => tag.trim());
+    }
       const newCollectionItem = {
         title: albumTitle,
         artistName: artist,
@@ -33,7 +38,7 @@ export default function EntryForm() {
         // trackList: trackList.split(" ,"),
         coverArt: albumArt || "./Assets/default-album-art.png",
         myReview: newReview,
-        tags: tags.split(","), //splits up the tag string into an array
+        tags: filledTags,
         postDate: newDate.toDateString() //turns that date into formatted date string
       };
 
@@ -137,7 +142,7 @@ export default function EntryForm() {
           onChange={(e) => {
             const newTagList = e.target.value;
             if (newTagList.length === 0) {
-              setTags([]); //if empty, will set to an empty array
+              setTags(""); //if empty, will set to an empty array
             } else {
               
               setTags(newTagList);

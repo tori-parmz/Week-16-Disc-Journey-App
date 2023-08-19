@@ -39,6 +39,12 @@ export default function EditForm(props) {
       alert("Album Review Required");
     } else {
 
+      let filledTags = []; // Initialize an empty array
+
+    if (editedTags.trim() !== "") { // Check if tags input is not empty after trimming
+      filledTags = editedTags.split(",").map(tag => tag.trim());
+    }
+
       // creates object to send updated data
       const updatedCollectionItem = {
         title: editedAlbumTitle,
@@ -47,7 +53,7 @@ export default function EditForm(props) {
         // trackList: editedTrackList.split(","),
         coverArt: editedAlbumArt || "./Assets/default-album-art.png",
         myReview: editedReview,
-        tags: editedTags.split(","), //splits up the tag string into an array
+        tags: filledTags, //splits up the tag string into an array
         id: id,
       };
 
@@ -160,7 +166,7 @@ export default function EditForm(props) {
           onChange={(e) => {
             const newTagList = e.target.value.trim();
             if (newTagList.length === 0) {
-              setEditedTags([]); //sets to empty array if no tags
+              setEditedTags(""); //sets to empty array if no tags
             } else {
               setEditedTags(newTagList);
               // console.log(newTagList);
